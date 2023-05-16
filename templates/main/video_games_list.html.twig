@@ -17,14 +17,14 @@
         </div>
         </div>
         <div class="col-12 col-md-8">
-        <table class="table table-striped">
-                <thead>
+        <table class="table table-hover">
+                <thead class="table-dark sticky-top">
                     <tr>
                         <th scope="col"></th>
                         <th scope="col">Nom</th>
                         <th scope="col">Console / Support</th>
                         <th scope="col">Date de sortie</th>
-                        <th scope="col">Etat</th>
+                        <th scope="col"></th>
                         <th scope="col"></th>
                     </tr>
                 </thead>
@@ -35,17 +35,36 @@
                 <td>{{ vg.name}}</td>
                 <td>{{ vg.console}}</td>
                 <td>{{ vg.releaseDate|date('Y-m-d')}}</td>
-                <td>{{ vg.conservation}}</td>
+                <td><button class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample{{ loop.index }}" role="button" aria-expanded="false" aria-controls="collapseExample"><span class="bi bi-eye-fill"></span></button></td>
                 <td>
                 
-                <form method="post" action="{{ path('app_vg_delete', {'id': vg.id}) }}" onsubmit="return confirm('Supprimer {{ vg.name }} de la liste ?');">
-            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ vg.id) }}">
-            <button class="btn btn-danger"><span class="bi bi-trash"></span></button>
-        </form>
+                {{ include('main/_delete_video_game_form.html.twig') }}
 
                 
                 
                 </td>
+                <tr>
+      <td colspan="7">
+      {# <p class="collapse" id="collapseExample{{ loop.index }}">Heyyy</p> #}
+                <table class="table collapse" id="collapseExample{{ loop.index }}">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Développeur</th>
+                        <th>Editeur</th>
+                        <th>Etat</th>
+                        <th>Commentaire</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <td>{{ vg.developer}}</td>
+                    <td>{{ vg.publisher}}</td>
+                    <td>{{ vg.conservation}}</td>
+                    <td>{{ vg.commentary}}</td>
+                </tbody>
+                </table>
+                </td>
+                </tr>
+                </tr>
                 {% endfor %}
                 </tbody>
                 </table>
