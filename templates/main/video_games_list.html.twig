@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block body %}
+<div class="p-5 mb-4 bg-light rounded-3">
+{# <p class="lead">Bienvenue sur ta Data Base {{ app.user.userName}} !</p> #}
+            <h1 class="display-4">Jeux vidéos de {{ app.user.userName}}</h1>
+        </div>
+        <div class="row">
+        <div class="col-12 col-md-4">
+                <div class="card sticky-top">
+                    <div class="card-header">Ajout</div>
+                    <div class="card-body">
+        {{ form(form) }}
+        </div>
+        </div>
+        </div>
+        <div class="col-12 col-md-8">
+        <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col"></th>
+                        <th scope="col">Nom</th>
+                        <th scope="col">Console / Support</th>
+                        <th scope="col">Date de sortie</th>
+                        <th scope="col">Etat</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for vg in videoGames %}
+                <tr>
+                <td>{{ loop.index }}</td>
+                <td>{{ vg.name}}</td>
+                <td>{{ vg.console}}</td>
+                <td>{{ vg.releaseDate|date('Y-m-d')}}</td>
+                <td>{{ vg.conservation}}</td>
+                <td>
+                
+                <form method="post" action="{{ path('app_vg_delete', {'id': vg.id}) }}" onsubmit="return confirm('Supprimer {{ vg.name }} de la liste ?');">
+            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ vg.id) }}">
+            <button class="btn btn-danger"><span class="bi bi-trash"></span></button>
+        </form>
+
+                
+                
+                </td>
+                {% endfor %}
+                </tbody>
+                </table>
+        </div>
+        
+
+        </div>
+        </div>
+{% endblock %}
