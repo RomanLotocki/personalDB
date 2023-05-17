@@ -41,8 +41,10 @@ class VideoGameType extends AbstractType
             ->add('commentary', TextareaType::class, [
                 'label' => 'Commentaire'
             ])
-            ->add('save', SubmitType::class, [
-                'label' => 'Ajouter'
+            ->add('submit', SubmitType::class, [
+                'label' => 'Ajouter',
+                "attr" => ["class" => "btn-blue"]
+                
             ])
         ;
     }

@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier un jeu{% endblock %}
+
+{% block body %}
+    <div class="p-5 mb-4 bg-light rounded-3">
+            <h1 class="display-4">{{ vg.name }}</h1>
+        </div>
+<div class="card">
+                    <div class="card-header">Modifier</div>
+                    <div class="card-body">
+    {{ form_start(form) }}
+    {{ form_row(form.name, {
+        'label_attr': {'class': 'fw-bold'}
+    }) }}
+    {{ form_row(form.console, {
+        'label_attr': {'class': 'fw-bold'}
+    }) }}
+    {{ form_row(form.release_date, {
+        'label_attr': {'class': 'fw-bold'}
+    }) }}
+    {{ form_row(form.developer, {
+        'label_attr': {'class': 'fw-bold'}
+    }) }}
+    {{ form_row(form.publisher, {
+        'label_attr': {'class': 'fw-bold'}
+    }) }}
+    {{ form_row(form.conservation, {
+        'label_attr': {'class': 'fw-bold'}
+    }) }}
+    {{ form_row(form.commentary, {
+        'label_attr': {'class': 'fw-bold'}
+    }) }}
+    {{ form_row(form.submit, { 'label': 'Modifier' }) }}
+    {{ form_rest(form) }}
+{{ form_end(form) }}
+<a class="btn btn-yellow mb-1" href="{{ path('app_vg_list') }}">Retour à la liste</a>
+</div>
+</div>
+</div>
+
+    
+
+    {# {{ include('admin/ability/_delete_form.html.twig') }} #}
+{% endblock %}
