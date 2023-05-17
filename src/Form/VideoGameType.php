@@ -20,10 +20,12 @@ class VideoGameType extends AbstractType
                 'label' => 'Nom'
             ])
             ->add('developer', TextType::class, [
-                'label' => 'Développeur'
+                'label' => 'Développeur',
+                'required' => false,
             ])
             ->add('publisher', TextType::class, [
-                'label' => 'Editeur'
+                'label' => 'Editeur',
+                'required' => false,
             ])
             ->add('release_date', DateType::class, [
                 'input'  => 'datetime_immutable',
@@ -36,10 +38,12 @@ class VideoGameType extends AbstractType
                 'label' => 'Console / Support'
             ])
             ->add('conservation', TextareaType::class, [
-                'label' => 'Etat'
+                'label' => 'Etat',
+                'required' => false,
             ])
             ->add('commentary', TextareaType::class, [
-                'label' => 'Commentaire'
+                'label' => 'Commentaire',
+                'required' => false,
             ])
             ->add('submit', SubmitType::class, [
                 'label' => 'Ajouter',
