@@ -35,6 +35,10 @@ class VideoGame
     #[ORM\Column(type: Types::DATE_IMMUTABLE)]
     private ?\DateTimeImmutable $release_date = null;
 
+    #[ORM\ManyToOne(inversedBy: 'videoGames')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $user = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -120,6 +124,18 @@ class VideoGame
     public function setReleaseDate(\DateTimeImmutable $release_date): self
     {
         $this->release_date = $release_date;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }

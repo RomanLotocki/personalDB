@@ -3,8 +3,9 @@
 namespace App\Repository;
 
 use App\Entity\VideoGame;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @extends ServiceEntityRepository<VideoGame>
@@ -37,6 +38,17 @@ class VideoGameRepository extends ServiceEntityRepository
         if ($flush) {
             $this->getEntityManager()->flush();
         }
+    }
+
+    public function findAllByUser($value)
+    {
+        return $this->createQueryBuilder('s')
+            ->andWhere('s.user = :val')
+            ->setParameter('val', $value)
+            ->orderBy('s.id', 'DESC')
+            ->getQuery()
+            ->getResult()
+        ;
     }
 
 //    /**

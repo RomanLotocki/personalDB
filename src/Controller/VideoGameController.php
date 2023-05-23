@@ -23,15 +23,18 @@ class VideoGameController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $videoGame->setUser($this->getUser());
             $em->persist($videoGame);
             $em->flush();
 
             return $this->redirectToRoute('app_vg_list');
         }
+
+        dump($this->getUser());
         
         return $this->render('main/video_games_list.html.twig', [
             'form' => $form,
-            'videoGames' => $videoGameRepository->findAll(),
+            'videoGames' => $videoGameRepository->findAllByUser($this->getUser()),
             'controller_name' => 'VideoGameController',
         ]);
     }
@@ -50,6 +53,10 @@ class VideoGameController extends AbstractController
     #[Route('/{id}/modifier', methods: ['GET', 'POST'], name: 'app_vg_edit', requirements: ['id' => '\d+'])]
     public function edit(Request $request, VideoGame $vg, EntityManagerInterface $entityManager): Response
     {
+        if ($vg->getUser() !== $this->getUser()) {
+            throw $this->createNotFoundException('Cette page n\'existe pas');
+        }
+        else {
         $form = $this->createForm(VideoGameType::class, $vg);
         $form->handleRequest($request);
 
@@ -64,5 +71,6 @@ class VideoGameController extends AbstractController
             'form' => $form,
             'controller' => 'VideoGameController'
         ]);
+    }
     }
 }

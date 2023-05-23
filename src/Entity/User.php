@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -29,6 +31,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(length: 255)]
     private ?string $userName = null;
+
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: VideoGame::class, orphanRemoval: true)]
+    private Collection $videoGames;
+
+    public function __construct()
+    {
+        $this->videoGames = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -108,6 +118,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setUserName(string $userName): self
     {
         $this->userName = $userName;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, VideoGame>
+     */
+    public function getVideoGames(): Collection
+    {
+        return $this->videoGames;
+    }
+
+    public function addVideoGame(VideoGame $videoGame): self
+    {
+        if (!$this->videoGames->contains($videoGame)) {
+            $this->videoGames->add($videoGame);
+            $videoGame->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeVideoGame(VideoGame $videoGame): self
+    {
+        if ($this->videoGames->removeElement($videoGame)) {
+            // set the owning side to null (unless already changed)
+            if ($videoGame->getUser() === $this) {
+                $videoGame->setUser(null);
+            }
+        }
 
         return $this;
     }
