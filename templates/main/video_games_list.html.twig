@@ -17,6 +17,12 @@
         </div>
         </div>
         <div class="col-12 col-md-8">
+        {{ form_start(search_form) }}
+        <div class="d-flex flex-row mb-3">
+        {{ form_widget(search_form.query)}}
+        <button class="btn btn-blue ms-4"><span class="bi bi-search"></span></button>
+        </div>
+        {{ form_end(search_form)}}
         <table class="table table-hover">
                 <thead class="yellow sticky-top text-dark">
                     <tr>

@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\VideoGame;
+use App\Model\SearchData;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
@@ -49,6 +50,25 @@ class VideoGameRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult()
         ;
+    }
+
+    public function findBySearch($value, SearchData $searchData)
+    {
+        $results = $this->createQueryBuilder('s')
+            ->where('s.user = :val')
+            ->setParameter('val', $value);
+            if (!empty($searchData->query)) {
+                $results = $results
+                ->andWhere('s.name LIKE :q')
+                ->setParameter('q', "%{$searchData->query } %");
+
+            }
+            $results = $results
+            ->orderBy('s.id', 'DESC')
+            ->getQuery()
+            ->getResult();
+
+            return $results;
     }
 
 //    /**

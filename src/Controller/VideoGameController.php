@@ -3,7 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\VideoGame;
+use App\Form\SearchVideoGameType;
 use App\Form\VideoGameType;
+use App\Model\SearchData;
 use App\Repository\VideoGameRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -29,11 +31,24 @@ class VideoGameController extends AbstractController
 
             return $this->redirectToRoute('app_vg_list');
         }
+        $searchData = new SearchData();
+        $searchForm = $this->createForm(SearchVideoGameType::class, $searchData);
+        $searchForm->handleRequest($request);
+        if ($searchForm->isSubmitted() && $searchForm->isValid()) {
+            dump($searchData);
+            $results = $videoGameRepository->findBySearch($this->getUser(), $searchData);
 
-        dump($this->getUser());
+            return $this->render('main/video_games_list.html.twig', [
+                'form' => $form,
+                'search_form' => $searchForm,
+                'videoGames' => $results,
+                'controller_name' => 'VideoGameController',
+            ]);
+        }
         
         return $this->render('main/video_games_list.html.twig', [
             'form' => $form,
+            'search_form' => $searchForm,
             'videoGames' => $videoGameRepository->findAllByUser($this->getUser()),
             'controller_name' => 'VideoGameController',
         ]);
