@@ -1,12 +1,14 @@
-@import "~bootstrap/scss/functions";
-@import "~bootstrap/scss/variables";
-@import "~bootstrap/scss/mixins";
-
 $fof: #f0f;
 $blue: #2e6db4;
 $green: #00ac9f;
 $yellow: #f3c300;
 $red: #df0024;
+
+$component-active-bg: $yellow;
+
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
 
 // Create your own map
 $custom-colors: (
