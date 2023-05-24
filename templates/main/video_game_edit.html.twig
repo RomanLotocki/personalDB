@@ -9,7 +9,9 @@
 <div class="card">
                     <div class="card-header">Modifier</div>
                     <div class="card-body">
-    {{ form_start(form) }}
+    {{ form_start(form, {
+        'label_attr': {'class': 'fw-bold'}
+    }) }}
     {{ form_row(form.name, {
         'label_attr': {'class': 'fw-bold'}
     }) }}
@@ -23,6 +25,12 @@
         'label_attr': {'class': 'fw-bold'}
     }) }}
     {{ form_row(form.publisher, {
+        'label_attr': {'class': 'fw-bold'}
+    }) }}
+    {{ form_row(form.acquisition_date, {
+        'label_attr': {'class': 'fw-bold'}
+    }) }}
+    {{ form_row(form.acquisition_price, {
         'label_attr': {'class': 'fw-bold'}
     }) }}
     {{ form_row(form.conservation, {

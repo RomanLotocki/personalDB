@@ -4,5 +4,10 @@ namespace App\Model;
 
 class SearchData
 {
-    public $query = null;
+    /**
+     * get the search user input
+     *
+     * @var string|null
+     */
+    public ?string $query = null;
 }

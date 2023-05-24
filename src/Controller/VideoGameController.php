@@ -35,7 +35,6 @@ class VideoGameController extends AbstractController
         $searchForm = $this->createForm(SearchVideoGameType::class, $searchData);
         $searchForm->handleRequest($request);
         if ($searchForm->isSubmitted() && $searchForm->isValid()) {
-            dump($searchData);
             $results = $videoGameRepository->findBySearch($this->getUser(), $searchData);
 
             return $this->render('main/video_games_list.html.twig', [

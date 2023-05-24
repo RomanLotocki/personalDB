@@ -17,14 +17,14 @@
         </div>
         </div>
         <div class="col-12 col-md-8">
-        {{ form_start(search_form) }}
-        <div class="d-flex flex-row mb-3">
+        {{ form_start(search_form, {
+          'attr': {'class': 'sticky-top p-2 mb-2 bg-body-tertiary d-flex aligns-items-center rounded-3'}
+        }) }}
         {{ form_widget(search_form.query)}}
         <button class="btn btn-blue ms-4"><span class="bi bi-search"></span></button>
-        </div>
         {{ form_end(search_form)}}
         <table class="table table-hover">
-                <thead class="yellow sticky-top text-dark">
+                <thead class="yellow text-dark">
                     <tr>
                         <th scope="col"></th>
                         <th scope="col">Nom</th>
@@ -41,7 +41,7 @@
                 <td>{{ loop.index }}</td>
                 <td class="fw-bold">{{ vg.name}}</td>
                 <td>{{ vg.console}}</td>
-                <td>{{ vg.releaseDate|date('Y-m-d')}}</td>
+                <td>{{ vg.releaseDate|date('d-m-Y')}}</td>
                 <td><button class="btn btn-blue" data-bs-toggle="collapse" data-bs-target="#collapseExample{{ loop.index }}" aria-expanded="false" aria-controls="collapseExample"><span class="bi bi-eye-fill"></span></button></td>
                 {# <a class= "btn btn-warning mb-1" href="{{ path('app_admin_ability_edit', {'id': ability.id}) }}">Modifier</a> #}
                 <td><a class="btn btn-green" href="{{ path('app_vg_edit', {'id': vg.id}) }}"><span class="bi bi-pencil-square"></span></a></td>
@@ -59,6 +59,8 @@
   <ul class="list-group list-group-flush">
     <li class="list-group-item"><span class="fw-bold">Développeur : </span>{{ vg.developer}}</li>
     <li class="list-group-item"><span class="fw-bold">Editeur : </span>{{ vg.publisher}}</li>
+    <li class="list-group-item"><span class="fw-bold">Date d'acquisition : </span>{{ vg.acquisitionDate is empty ? "" : vg.acquisitionDate|date('d-m-Y')}}</li>
+    <li class="list-group-item"><span class="fw-bold">Prix d'acquisition : </span>{{ vg.acquisitionPrice}}</li>
     <li class="list-group-item"><span class="fw-bold">Etat : </span>{{ vg.conservation}}</li>
     <li class="list-group-item"><span class="fw-bold">Commentaire : </span>{{ vg.commentary}}</li>
   </ul>

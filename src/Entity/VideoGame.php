@@ -39,6 +39,12 @@ class VideoGame
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?\DateTimeImmutable $acquisition_date = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $acquisition_price = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -136,6 +142,30 @@ class VideoGame
     public function setUser(?User $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getAcquisitionDate(): ?\DateTimeImmutable
+    {
+        return $this->acquisition_date;
+    }
+
+    public function setAcquisitionDate(?\DateTimeImmutable $acquisition_date): self
+    {
+        $this->acquisition_date = $acquisition_date;
+
+        return $this;
+    }
+
+    public function getAcquisitionPrice(): ?string
+    {
+        return $this->acquisition_price;
+    }
+
+    public function setAcquisitionPrice(?string $acquisition_price): self
+    {
+        $this->acquisition_price = $acquisition_price;
 
         return $this;
     }

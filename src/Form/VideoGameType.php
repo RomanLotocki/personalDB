@@ -37,6 +37,21 @@ class VideoGameType extends AbstractType
             ->add('console', TextType::class, [
                 'label' => 'Console / Support'
             ])
+
+            ->add('acquisition_date', DateType::class, [
+                'input'  => 'datetime_immutable',
+                'widget' => 'single_text',
+                // this is actually the default format for single_text
+                'format' => 'yyyy-MM-dd',
+                'label' => "Date d'acquisition",
+                'required' => false,
+            ])
+
+            ->add('acquisition_price', TextType::class, [
+                'label' => "Prix d'acquisition",
+                'required' => false,
+            ])
+
             ->add('conservation', TextareaType::class, [
                 'label' => 'Etat',
                 'required' => false,
