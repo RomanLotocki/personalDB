@@ -1,79 +1,111 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Accueil{% endblock %}
+{% block title %}Accueil
+{% endblock %}
 
 {% block body %}
-<div class="p-5 mb-4 bg-body-tertiary rounded-3">
-{# <p class="lead">Bienvenue sur ta Data Base {{ app.user.userName}} !</p> #}
-            <h1 class="display-4">Jeux vidéos de {{ app.user.userName}}</h1>
-        </div>
-        <div class="row">
-        <div class="col-12 col-md-4">
-                <div class="card sticky-top">
-                    <div class="card-header">Ajout</div>
-                    <div class="card-body">
-        {{ form(form) }}
-        </div>
-        </div>
-        </div>
-        <div class="col-12 col-md-8">
-        {{ form_start(search_form, {
+	<div
+		class="p-5 mb-4 bg-body-tertiary rounded-3">
+		{# <p class="lead">Bienvenue sur ta Data Base {{ app.user.userName}} !</p> #}
+		<h1 class="display-4">Jeux vidéos de
+			{{ app.user.userName}}</h1>
+	</div>
+	<div class="row">
+		<div class="col-12 col-md-4">
+			<div class="card sticky-top">
+				<div class="card-header">Ajout</div>
+				<div class="card-body">
+					{{ form(form) }}
+					</div>
+				</div>
+			</div>
+			<div class="col-12 col-md-8">
+				{{ form_start(search_form, {
           'attr': {'class': 'sticky-top p-2 mb-2 bg-body-tertiary d-flex aligns-items-center rounded-3'}
         }) }}
-        {{ form_widget(search_form.query)}}
-        <button class="btn btn-blue ms-4"><span class="bi bi-search"></span></button>
-        {{ form_end(search_form)}}
-        <table class="table table-hover">
-                <thead class="yellow text-dark">
-                    <tr>
-                        <th scope="col"></th>
-                        <th scope="col">Nom</th>
-                        <th scope="col">Console / Support</th>
-                        <th scope="col">Date de sortie</th>
-                        <th scope="col"></th>
-                        <th scope="col"></th>
-                        <th scope="col"></th>
-                    </tr>
-                </thead>
-                <tbody>
-                {% for vg in videoGames %}
-                <tr>
-                <td>{{ loop.index }}</td>
-                <td class="fw-bold">{{ vg.name}}</td>
-                <td>{{ vg.console}}</td>
-                <td>{{ vg.releaseDate|date('d-m-Y')}}</td>
-                <td><button class="btn btn-blue" data-bs-toggle="collapse" data-bs-target="#collapseExample{{ loop.index }}" aria-expanded="false" aria-controls="collapseExample"><span class="bi bi-eye-fill"></span></button></td>
-                {# <a class= "btn btn-warning mb-1" href="{{ path('app_admin_ability_edit', {'id': ability.id}) }}">Modifier</a> #}
-                <td><a class="btn btn-green" href="{{ path('app_vg_edit', {'id': vg.id}) }}"><span class="bi bi-pencil-square"></span></a></td>
-                <td>
-                
-                {{ include('main/_delete_video_game_form.html.twig') }}
+				{{ form_widget(search_form.query)}}
+				<button class="btn btn-blue ms-4">
+					<span class="bi bi-search"></span>
+				</button>
+				{{ form_end(search_form)}}
+				<table class="table table-hover">
+					<thead class="bg-green">
+						<tr>
+							<th scope="col"></th>
+							<th scope="col">{{ knp_pagination_sortable(videoGames, 'Nom', 'name', {'class': 'text-dark float-start text-decoration-none'}) }}</th>
+							<th scope="col">{{ knp_pagination_sortable(videoGames, 'Console / Support', 'console', {'class': 'text-dark float-start text-decoration-none'}) }}</th>
+							<th scope="col">{{ knp_pagination_sortable(videoGames, 'Date de sortie', 'releaseDate', {'class': 'text-dark float-start text-decoration-none'}) }}</th>
+							<th scope="col"></th>
+							<th scope="col"></th>
+							<th scope="col"></th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for vg in videoGames %}
+							<tr>
+								<td>{{ loop.index }}</td>
+								<td class="fw-bold">{{ vg.name}}</td>
+								<td>{{ vg.console}}</td>
+								<td>{{ vg.releaseDate|date('d-m-Y')}}</td>
+								<td>
+									<button class="btn btn-blue" data-bs-toggle="collapse" data-bs-target="#collapseExample{{ loop.index }}" aria-expanded="false" aria-controls="collapseExample">
+										<span class="bi bi-eye-fill"></span>
+									</button>
+								</td>
+								{# <a class= "btn btn-warning mb-1" href="{{ path('app_admin_ability_edit', {'id': ability.id}) }}">Modifier</a> #}
+								<td>
+									<a class="btn btn-yellow" href="{{ path('app_vg_edit', {'id': vg.id}) }}">
+										<span class="bi bi-pencil-square"></span>
+									</a>
+								</td>
+								<td>
 
-                
-                
-                </td>
-                <tr class="collapse" id="collapseExample{{ loop.index }}">
-      <td colspan="7">
-      
-                <div class="card">
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item"><span class="fw-bold">Développeur : </span>{{ vg.developer}}</li>
-    <li class="list-group-item"><span class="fw-bold">Editeur : </span>{{ vg.publisher}}</li>
-    <li class="list-group-item"><span class="fw-bold">Date d'acquisition : </span>{{ vg.acquisitionDate is empty ? "" : vg.acquisitionDate|date('d-m-Y')}}</li>
-    <li class="list-group-item"><span class="fw-bold">Prix d'acquisition : </span>{{ vg.acquisitionPrice}}</li>
-    <li class="list-group-item"><span class="fw-bold">Etat : </span>{{ vg.conservation}}</li>
-    <li class="list-group-item"><span class="fw-bold">Commentaire : </span>{{ vg.commentary}}</li>
-  </ul>
-</div>
-                </td>
-                </tr>
-                </tr>
-                {% endfor %}
-                </tbody>
-                </table>
-        </div>
-        
+									{{ include('main/_delete_video_game_form.html.twig') }}</td>
+							</tr>
+							<tr class="collapse" id="collapseExample{{ loop.index }}">
+								<td colspan="7">
 
-        </div>
-        </div>
-{% endblock %}
+									<div class="card">
+										<ul class="list-group list-group-flush">
+											<li class="list-group-item">
+												<span class="fw-bold">Développeur :
+												</span>
+												{{ vg.developer}}</li>
+											<li class="list-group-item">
+												<span class="fw-bold">Editeur :
+												</span>
+												{{ vg.publisher}}</li>
+											<li class="list-group-item">
+												<span class="fw-bold">Date d'acquisition :
+												</span>
+												{{ vg.acquisitionDate is empty ? "" : vg.acquisitionDate|date('d-m-Y')}}</li>
+											<li class="list-group-item">
+												<span class="fw-bold">Prix d'acquisition :
+												</span>
+												{{ vg.acquisitionPrice}}</li>
+											<li class="list-group-item">
+												<span class="fw-bold">Etat :
+												</span>
+												{{ vg.conservation}}</li>
+											<li class="list-group-item">
+												<span class="fw-bold">Commentaire :
+												</span>
+												{{ vg.commentary}}</li>
+										</ul>
+									</div>
+								</td>
+							</tr>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+			<div class="navigation d-flex justify-content-center mb-8">
+				{{ knp_pagination_render(videoGames) }}
+			</div>
+		</div>
+
+
+	</div>
+
+</div>{% endblock %}
+

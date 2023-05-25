@@ -1,53 +1,52 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Modifier un jeu{% endblock %}
+{% block title %}Modifier un jeu
+{% endblock %}
 
 {% block body %}
-    <div class="p-5 mb-4 bg-body-tertiary rounded-3">
-            <h1 class="display-4">{{ vg.name }}</h1>
-        </div>
-<div class="card">
-                    <div class="card-header">Modifier</div>
-                    <div class="card-body">
-    {{ form_start(form, {
+	<div class="p-5 mb-4 bg-body-tertiary rounded-3">
+		<h1 class="display-4">{{ vg.name }}</h1>
+	</div>
+	<div class="card">
+		<div class="card-header">Modifier</div>
+		<div class="card-body">
+			{{ form_start(form, {
         'label_attr': {'class': 'fw-bold'}
     }) }}
-    {{ form_row(form.name, {
+			{{ form_row(form.name, {
         'label_attr': {'class': 'fw-bold'}
     }) }}
-    {{ form_row(form.console, {
+			{{ form_row(form.console, {
         'label_attr': {'class': 'fw-bold'}
     }) }}
-    {{ form_row(form.release_date, {
+			{{ form_row(form.release_date, {
         'label_attr': {'class': 'fw-bold'}
     }) }}
-    {{ form_row(form.developer, {
+			{{ form_row(form.developer, {
         'label_attr': {'class': 'fw-bold'}
     }) }}
-    {{ form_row(form.publisher, {
+			{{ form_row(form.publisher, {
         'label_attr': {'class': 'fw-bold'}
     }) }}
-    {{ form_row(form.acquisition_date, {
+			{{ form_row(form.acquisition_date, {
         'label_attr': {'class': 'fw-bold'}
     }) }}
-    {{ form_row(form.acquisition_price, {
+			{{ form_row(form.acquisition_price, {
         'label_attr': {'class': 'fw-bold'}
     }) }}
-    {{ form_row(form.conservation, {
+			{{ form_row(form.conservation, {
         'label_attr': {'class': 'fw-bold'}
     }) }}
-    {{ form_row(form.commentary, {
+			{{ form_row(form.commentary, {
         'label_attr': {'class': 'fw-bold'}
     }) }}
-    {{ form_row(form.submit, { 'label': 'Modifier' }) }}
-    {{ form_rest(form) }}
-{{ form_end(form) }}
-<a class="btn btn-yellow mb-1" href="{{ path('app_vg_list') }}">Retour à la liste</a>
-</div>
-</div>
+			{{ form_row(form.submit, { 'label': 'Modifier' }) }}
+			{{ form_rest(form) }}
+			{{ form_end(form) }}
+			<a class="btn btn-yellow mb-1" href="{{ path('app_vg_list') }}">Retour à la liste</a>
+		</div>
+	</div>
 </div>
 
-    
 
-    {# {{ include('admin/ability/_delete_form.html.twig') }} #}
-{% endblock %}
+{# {{ include('admin/ability/_delete_form.html.twig') }} #}{% endblock %}

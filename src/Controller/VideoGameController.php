@@ -35,7 +35,8 @@ class VideoGameController extends AbstractController
         $searchForm = $this->createForm(SearchVideoGameType::class, $searchData);
         $searchForm->handleRequest($request);
         if ($searchForm->isSubmitted() && $searchForm->isValid()) {
-            $results = $videoGameRepository->findBySearch($this->getUser(), $searchData);
+
+            $results = $videoGameRepository->findAllByUser($this->getUser(), $searchData, $request->query->getInt('page', 1));
 
             return $this->render('main/video_games_list.html.twig', [
                 'form' => $form,
@@ -44,11 +45,11 @@ class VideoGameController extends AbstractController
                 'controller_name' => 'VideoGameController',
             ]);
         }
-        
+
         return $this->render('main/video_games_list.html.twig', [
             'form' => $form,
             'search_form' => $searchForm,
-            'videoGames' => $videoGameRepository->findAllByUser($this->getUser()),
+            'videoGames' => $videoGameRepository->findAllByUser($this->getUser(), $searchData, $request->query->getInt('page', 1)),
             'controller_name' => 'VideoGameController',
         ]);
     }
@@ -56,7 +57,7 @@ class VideoGameController extends AbstractController
     #[Route('/{id}', methods: ['POST'], name: 'app_vg_delete', requirements: ['id' => '\d+'])]
     public function delete(Request $request, VideoGame $vg, EntityManagerInterface $em): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$vg->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $vg->getId(), $request->request->get('_token'))) {
             $em->remove($vg);
             $em->flush();
         }
@@ -69,22 +70,21 @@ class VideoGameController extends AbstractController
     {
         if ($vg->getUser() !== $this->getUser()) {
             throw $this->createNotFoundException('Cette page n\'existe pas');
+        } else {
+            $form = $this->createForm(VideoGameType::class, $vg);
+            $form->handleRequest($request);
+
+            if ($form->isSubmitted() && $form->isValid()) {
+                $entityManager->flush();
+
+                return $this->redirectToRoute('app_vg_list', [], Response::HTTP_SEE_OTHER);
+            }
+
+            return $this->render('main/video_game_edit.html.twig', [
+                'vg' => $vg,
+                'form' => $form,
+                'controller' => 'VideoGameController'
+            ]);
         }
-        else {
-        $form = $this->createForm(VideoGameType::class, $vg);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->flush();
-
-            return $this->redirectToRoute('app_vg_list', [], Response::HTTP_SEE_OTHER);
-        }
-
-        return $this->render('main/video_game_edit.html.twig', [
-            'vg' => $vg,
-            'form' => $form,
-            'controller' => 'VideoGameController'
-        ]);
-    }
     }
 }
