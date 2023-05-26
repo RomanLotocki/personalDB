@@ -1,19 +1,18 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Accueil
+{% block title %}Jeux vidéo
 {% endblock %}
 
 {% block body %}
 	<div
 		class="p-5 mb-4 bg-body-tertiary rounded-3">
 		{# <p class="lead">Bienvenue sur ta Data Base {{ app.user.userName}} !</p> #}
-		<h1 class="display-4">Jeux vidéos de
-			{{ app.user.userName}}</h1>
+		<h1 class="display-4">Jeux vidéo</h1>
 	</div>
 	<div class="row">
 		<div class="col-12 col-md-4">
 			<div class="card sticky-top">
-				<div class="card-header">Ajout</div>
+				<div class="card-header">Ajouter un jeu</div>
 				<div class="card-body">
 					{{ form(form) }}
 					</div>
@@ -29,12 +28,12 @@
 				</button>
 				{{ form_end(search_form)}}
 				<table class="table table-hover">
-					<thead class="bg-green">
+					<thead class="bg-green text-light">
 						<tr>
 							<th scope="col"></th>
-							<th scope="col">{{ knp_pagination_sortable(videoGames, 'Nom', 'name', {'class': 'text-dark float-start text-decoration-none'}) }}</th>
-							<th scope="col">{{ knp_pagination_sortable(videoGames, 'Console / Support', 'console', {'class': 'text-dark float-start text-decoration-none'}) }}</th>
-							<th scope="col">{{ knp_pagination_sortable(videoGames, 'Date de sortie', 'releaseDate', {'class': 'text-dark float-start text-decoration-none'}) }}</th>
+							<th scope="col">{{ knp_pagination_sortable(videoGames, 'Nom', 'name', {'class': 'text-light float-start text-decoration-none'}) }}</th>
+							<th scope="col">{{ knp_pagination_sortable(videoGames, 'Console / Support', 'console', {'class': 'text-light float-start text-decoration-none'}) }}</th>
+							<th scope="col">{{ knp_pagination_sortable(videoGames, 'Date de sortie', 'releaseDate', {'class': 'text-light float-start text-decoration-none'}) }}</th>
 							<th scope="col"></th>
 							<th scope="col"></th>
 							<th scope="col"></th>
@@ -60,7 +59,7 @@
 								</td>
 								<td>
 
-									{{ include('main/_delete_video_game_form.html.twig') }}</td>
+									{{ include('main/video_games/_delete_video_game_form.html.twig') }}</td>
 							</tr>
 							<tr class="collapse" id="collapseExample{{ loop.index }}">
 								<td colspan="7">

@@ -13,9 +13,10 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
+#[Route('/jeux-video', name: 'app_vg_')]
 class VideoGameController extends AbstractController
 {
-    #[Route('/data-base/jeux-video', methods: ['GET', 'POST'], name: 'app_vg_list')]
+    #[Route('/', methods: ['GET', 'POST'], name: 'list')]
     public function index(Request $request, EntityManagerInterface $em, VideoGameRepository $videoGameRepository): Response
     {
         $videoGame = new VideoGame();
@@ -38,7 +39,7 @@ class VideoGameController extends AbstractController
 
             $results = $videoGameRepository->findAllByUser($this->getUser(), $searchData, $request->query->getInt('page', 1));
 
-            return $this->render('main/video_games_list.html.twig', [
+            return $this->render('main/video_games/video_games_list.html.twig', [
                 'form' => $form,
                 'search_form' => $searchForm,
                 'videoGames' => $results,
@@ -46,7 +47,7 @@ class VideoGameController extends AbstractController
             ]);
         }
 
-        return $this->render('main/video_games_list.html.twig', [
+        return $this->render('main/video_games/video_games_list.html.twig', [
             'form' => $form,
             'search_form' => $searchForm,
             'videoGames' => $videoGameRepository->findAllByUser($this->getUser(), $searchData, $request->query->getInt('page', 1)),
@@ -54,7 +55,7 @@ class VideoGameController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', methods: ['POST'], name: 'app_vg_delete', requirements: ['id' => '\d+'])]
+    #[Route('/{id}/supprimer', methods: ['POST'], name: 'delete', requirements: ['id' => '\d+'])]
     public function delete(Request $request, VideoGame $vg, EntityManagerInterface $em): Response
     {
         if ($this->isCsrfTokenValid('delete' . $vg->getId(), $request->request->get('_token'))) {
@@ -65,7 +66,7 @@ class VideoGameController extends AbstractController
         return $this->redirectToRoute('app_vg_list', [], Response::HTTP_SEE_OTHER);
     }
 
-    #[Route('/{id}/modifier', methods: ['GET', 'POST'], name: 'app_vg_edit', requirements: ['id' => '\d+'])]
+    #[Route('/{id}/modifier', methods: ['GET', 'POST'], name: 'edit', requirements: ['id' => '\d+'])]
     public function edit(Request $request, VideoGame $vg, EntityManagerInterface $entityManager): Response
     {
         if ($vg->getUser() !== $this->getUser()) {
@@ -80,10 +81,10 @@ class VideoGameController extends AbstractController
                 return $this->redirectToRoute('app_vg_list', [], Response::HTTP_SEE_OTHER);
             }
 
-            return $this->render('main/video_game_edit.html.twig', [
+            return $this->render('main/video_games/video_game_edit.html.twig', [
                 'vg' => $vg,
                 'form' => $form,
-                'controller' => 'VideoGameController'
+                'controller_name' => 'VideoGameController'
             ]);
         }
     }
