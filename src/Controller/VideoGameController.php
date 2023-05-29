@@ -7,6 +7,7 @@ use App\Form\SearchVideoGameType;
 use App\Form\VideoGameType;
 use App\Model\SearchData;
 use App\Repository\VideoGameRepository;
+use DateTimeImmutable;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -27,6 +28,7 @@ class VideoGameController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $videoGame->setUser($this->getUser());
+            $videoGame->setCreatedAt(new DateTimeImmutable());
             $em->persist($videoGame);
             $em->flush();
 
@@ -76,6 +78,7 @@ class VideoGameController extends AbstractController
             $form->handleRequest($request);
 
             if ($form->isSubmitted() && $form->isValid()) {
+                $vg->setUpdatedAt(new DateTimeImmutable());
                 $entityManager->flush();
 
                 return $this->redirectToRoute('app_vg_list', [], Response::HTTP_SEE_OTHER);

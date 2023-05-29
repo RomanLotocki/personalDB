@@ -33,6 +33,7 @@ class VideoGameFixtures extends Fixture
             $vg->setCommentary("Jeu japonais. Acheté en 2020. Etat proche du neuf. Banger !!");
             $vg->setReleaseDate(new DateTimeImmutable('11/03/1995'));
             $vg->setUser($userRepo->findOneBy(['email' => 'admin@gmail.com']));
+            $vg->setCreatedAt(new DateTimeImmutable());
         $manager->persist($vg);
 
         $vg = new VideoGame();
@@ -43,6 +44,7 @@ class VideoGameFixtures extends Fixture
             $vg->setConservation("Cartouche seule");
             $vg->setReleaseDate(new DateTimeImmutable('08/01/1993'));
             $vg->setUser($userRepo->findOneBy(['email' => 'admin@gmail.com']));
+            $vg->setCreatedAt(new DateTimeImmutable());
         $manager->persist($vg);
 
         $vg = new VideoGame();
@@ -53,6 +55,7 @@ class VideoGameFixtures extends Fixture
             $vg->setConservation("Complet. Etat moyen. Boîte abimée");
             $vg->setReleaseDate(new DateTimeImmutable('11/21/1994'));
             $vg->setUser($userRepo->findOneBy(['email' => 'admin@gmail.com']));
+            $vg->setCreatedAt(new DateTimeImmutable());
         $manager->persist($vg);
 
         $vg = new VideoGame();
@@ -63,6 +66,7 @@ class VideoGameFixtures extends Fixture
             $vg->setConservation("Complet. Boîte abimée sur l'arrière");
             $vg->setReleaseDate(new DateTimeImmutable('11/17/2000'));
             $vg->setUser($userRepo->findOneBy(['email' => 'admin@gmail.com']));
+            $vg->setCreatedAt(new DateTimeImmutable());
         $manager->persist($vg);
 
         $vg = new VideoGame();
@@ -73,6 +77,7 @@ class VideoGameFixtures extends Fixture
             $vg->setConservation("Cartouche seule. Bon état");
             $vg->setReleaseDate(new DateTimeImmutable('12/11/1998'));
             $vg->setUser($userRepo->findOneBy(['email' => 'admin@gmail.com']));
+            $vg->setCreatedAt(new DateTimeImmutable());
         $manager->persist($vg);
 
         $vg = new VideoGame();
@@ -82,6 +87,7 @@ class VideoGameFixtures extends Fixture
             $vg->setConsole("Playstation");
             $vg->setReleaseDate(new DateTimeImmutable('10/27/1999'));
             $vg->setUser($userRepo->findOneBy(['email' => 'admin@gmail.com']));
+            $vg->setCreatedAt(new DateTimeImmutable());
         $manager->persist($vg);
 
         $vg = new VideoGame();
@@ -91,6 +97,7 @@ class VideoGameFixtures extends Fixture
             $vg->setConsole("Playstation");
             $vg->setReleaseDate(new DateTimeImmutable('02/18/2000'));
             $vg->setUser($userRepo->findOneBy(['email' => 'admin@gmail.com']));
+            $vg->setCreatedAt(new DateTimeImmutable());
         $manager->persist($vg);
 
         $vg = new VideoGame();
@@ -100,6 +107,7 @@ class VideoGameFixtures extends Fixture
             $vg->setConsole("Playstation");
             $vg->setReleaseDate(new DateTimeImmutable('08/01/1996'));
             $vg->setUser($userRepo->findOneBy(['email' => 'admin@gmail.com']));
+            $vg->setCreatedAt(new DateTimeImmutable());
         $manager->persist($vg);
 
         $vg = new VideoGame();
@@ -109,6 +117,7 @@ class VideoGameFixtures extends Fixture
             $vg->setConsole("Playstation");
             $vg->setReleaseDate(new DateTimeImmutable('12/01/1997'));
             $vg->setUser($userRepo->findOneBy(['email' => 'admin@gmail.com']));
+            $vg->setCreatedAt(new DateTimeImmutable());
         $manager->persist($vg);
 
         $vg = new VideoGame();
@@ -118,6 +127,7 @@ class VideoGameFixtures extends Fixture
             $vg->setConsole("Playstation");
             $vg->setReleaseDate(new DateTimeImmutable('04/15/1998'));
             $vg->setUser($userRepo->findOneBy(['email' => 'admin@gmail.com']));
+            $vg->setCreatedAt(new DateTimeImmutable());
         $manager->persist($vg);
 
         $vg = new VideoGame();
@@ -131,6 +141,7 @@ class VideoGameFixtures extends Fixture
             $vg->setAcquisitionDate(new DateTimeImmutable('05/20/2023'));
             $vg->setAcquisitionPrice("39,90 €");
             $vg->setUser($userRepo->findOneBy(['email' => 'admin@gmail.com']));
+            $vg->setCreatedAt(new DateTimeImmutable());
         $manager->persist($vg);
 
         $vg = new VideoGame();
@@ -140,6 +151,7 @@ class VideoGameFixtures extends Fixture
             $vg->setConsole("Playstation");
             $vg->setReleaseDate(new DateTimeImmutable('07/28/2000'));
             $vg->setUser($userRepo->findOneBy(['email' => 'user@gmail.com']));
+            $vg->setCreatedAt(new DateTimeImmutable());
         $manager->persist($vg);
 
         $manager->flush();
