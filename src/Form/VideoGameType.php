@@ -10,6 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class VideoGameType extends AbstractType
 {
@@ -36,6 +37,12 @@ class VideoGameType extends AbstractType
             ])
             ->add('console', TextType::class, [
                 'label' => 'Console / Support'
+            ])
+
+            ->add('imageFile', VichImageType::class, [
+                'label' => 'Image',
+                'required' => false,
+                'delete_label' => "Supprimer l'image",
             ])
 
             ->add('acquisition_date', DateType::class, [
