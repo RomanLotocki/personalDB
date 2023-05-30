@@ -30,7 +30,6 @@
 				<table class="table table-hover">
 					<thead class="bg-green text-light">
 						<tr>
-							<th scope="col"></th>
 							<th scope="col">{{ knp_pagination_sortable(videoGames, 'Nom', 'name', {'class': 'text-light float-start text-decoration-none'}) }}</th>
 							<th scope="col">{{ knp_pagination_sortable(videoGames, 'Console / Support', 'console', {'class': 'text-light float-start text-decoration-none'}) }}</th>
 							<th scope="col">{{ knp_pagination_sortable(videoGames, 'Date de sortie', 'releaseDate', {'class': 'text-light float-start text-decoration-none'}) }}</th>
@@ -42,12 +41,11 @@
 					<tbody>
 						{% for vg in videoGames %}
 							<tr>
-								<td>{{ loop.index }}</td>
 								<td class="fw-bold">{{ vg.name}}</td>
 								<td>{{ vg.console}}</td>
 								<td>{{ vg.releaseDate|date('d-m-Y')}}</td>
 								<td>
-									<button class="btn btn-blue" data-bs-toggle="collapse" data-bs-target="#collapseExample{{ loop.index }}" aria-expanded="false" aria-controls="collapseExample">
+									<button class="btn btn-blue" data-bs-toggle="collapse" data-bs-target="#collapseExample{{ vg.id }}" aria-expanded="false" aria-controls="collapseExample">
 										<span class="bi bi-eye-fill"></span>
 									</button>
 								</td>
@@ -61,37 +59,45 @@
 
 									{{ include('main/video_games/_delete_video_game_form.html.twig') }}</td>
 							</tr>
-							<tr class="collapse" id="collapseExample{{ loop.index }}">
+							<tr class="collapse" id="collapseExample{{ vg.id }}">
 								<td colspan="7">
 
 									<div class="card">
-										<ul class="list-group list-group-flush">
-											<li class="list-group-item">
-												<span class="fw-bold">Développeur :
-												</span>
-												{{ vg.developer}}</li>
-											<li class="list-group-item">
-												<span class="fw-bold">Editeur :
-												</span>
-												{{ vg.publisher}}</li>
-											<li class="list-group-item">
-												<span class="fw-bold">Date d'acquisition :
-												</span>
-												{{ vg.acquisitionDate is empty ? "" : vg.acquisitionDate|date('d-m-Y')}}</li>
-											<li class="list-group-item">
-												<span class="fw-bold">Prix d'acquisition :
-												</span>
-												{{ vg.acquisitionPrice}}</li>
-											<li class="list-group-item">
-												<span class="fw-bold">Etat :
-												</span>
-												{{ vg.conservation}}</li>
-											<li class="list-group-item">
-												<span class="fw-bold">Commentaire :
-												</span>
-												{{ vg.commentary}}</li>
-										</ul>
-									</div>
+										<div class="row g-0">
+											<div class="col-md-4 d-flex align-items-center justify-content-center">
+												<img src= "{{ vich_uploader_asset(vg, 'imageFile') }}" alt= "{{ vg.name ~ ' cover' }}">
+											</div>
+											<div class="col-md-8">
+
+												<ul class="list-group list-group-flush">
+													<li class="list-group-item">
+														<span class="fw-bold">Développeur :
+														</span>
+														{{ vg.developer}}</li>
+													<li class="list-group-item">
+														<span class="fw-bold">Editeur :
+														</span>
+														{{ vg.publisher}}</li>
+													<li class="list-group-item">
+														<span class="fw-bold">Date d'acquisition :
+														</span>
+														{{ vg.acquisitionDate is empty ? "" : vg.acquisitionDate|date('d-m-Y')}}</li>
+													<li class="list-group-item">
+														<span class="fw-bold">Prix d'acquisition :
+														</span>
+														{{ vg.acquisitionPrice}}</li>
+													<li class="list-group-item">
+														<span class="fw-bold">Etat :
+														</span>
+														{{ vg.conservation}}</li>
+													<li class="list-group-item">
+														<span class="fw-bold">Commentaire :
+														</span>
+														{{ vg.commentary}}</li>
+												</ul>
+											</div>
+										</div>
+									</td>
 								</td>
 							</tr>
 						</tr>
