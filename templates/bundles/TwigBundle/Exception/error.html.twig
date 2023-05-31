@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Erreur
+{% endblock %}
+
+{% block body %}
+	<div
+		class="p-5 mb-4 bg-body-tertiary rounded-3">
+		{# <p class="lead">Bienvenue sur ta Data Base {{ app.user.userName}} !</p> #}
+		<h1 class="mb-4">
+			<span class="text-yellow">O</span>
+			<span class="text-blue">U</span>
+			<span class="text-red">P</span>
+			<span class="text-green">S</span>
+		</h1>
+		<p class="mb-4">Il semble que le site rencontre un problème... &#128533;</p>
+		<ol class="mb-4">
+			<li class="mb-4">Essayez de retourner à l'accueil</li>
+			<li class="mb-4">Réessayez plus tard</li>
+			<li>Si le problème persiste contactez la team !</li>
+		</ol>
+		<a class="btn btn-green mb-1 text-light" href="{{ path('app_home') }}">Retour à l'accueil</a>
+
+	</div>
+{% endblock %}

@@ -8,10 +8,10 @@
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0 text-yellow">
 					<li class="nav-item">
-						<a class="nav-link {{ controller_name is same as "MainController" ? "active" : "" }}" aria-current="page" href="{{ path('app_home') }}">Accueil</a>
+						<a class="nav-link {{ route_name is same as " app_home" ? " active" : " " }}" aria-current="page" href="{{ path('app_home') }}">Accueil</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link {{ controller_name is same as "VideoGameController" ? "active" : "" }}" href="{{ path('app_vg_list') }}">Jeux vidéo</a>
+						<a class="nav-link {{ route_name is same as " app_vg_list" ? " active" : " " }}" href="{{ path('app_vg_list') }}">Jeux vidéo</a>
 					</li>
 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -43,7 +43,7 @@
 									<use href="#sun-fill"></use>
 								</svg>
 								Light
-								
+
 							</button>
 						</li>
 						<li>
@@ -52,7 +52,7 @@
 									<use href="#moon-stars-fill"></use>
 								</svg>
 								Dark
-								
+
 							</button>
 						</li>
 						<li>
@@ -61,7 +61,7 @@
 									<use href="#circle-half"></use>
 								</svg>
 								Auto
-								
+
 							</button>
 						</li>
 					</ul>
@@ -71,3 +71,4 @@
 	</nav>
 
 {% endblock %}
+
