@@ -35,9 +35,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: VideoGame::class, orphanRemoval: true)]
     private Collection $videoGames;
 
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Console::class, orphanRemoval: true)]
+    private Collection $consoles;
+
     public function __construct()
     {
         $this->videoGames = new ArrayCollection();
+        $this->consoles = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -146,6 +150,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($videoGame->getUser() === $this) {
                 $videoGame->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Console>
+     */
+    public function getConsoles(): Collection
+    {
+        return $this->consoles;
+    }
+
+    public function addConsole(Console $console): self
+    {
+        if (!$this->consoles->contains($console)) {
+            $this->consoles->add($console);
+            $console->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeConsole(Console $console): self
+    {
+        if ($this->consoles->removeElement($console)) {
+            // set the owning side to null (unless already changed)
+            if ($console->getUser() === $this) {
+                $console->setUser(null);
             }
         }
 

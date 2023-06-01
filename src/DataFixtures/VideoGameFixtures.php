@@ -5,10 +5,12 @@ namespace App\DataFixtures;
 use App\Entity\User;
 use DateTimeImmutable;
 use App\Entity\VideoGame;
+use App\DataFixtures\UserFixtures;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 
-class VideoGameFixtures extends Fixture
+class VideoGameFixtures extends Fixture implements DependentFixtureInterface
 {
     public function load(ObjectManager $manager): void
     {
@@ -192,5 +194,12 @@ class VideoGameFixtures extends Fixture
         $manager->persist($vg);
 
         $manager->flush();
+    }
+
+    public function getDependencies()
+    {
+        return [
+            UserFixtures::class,
+        ];
     }
 }
