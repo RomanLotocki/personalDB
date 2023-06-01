@@ -39,6 +39,10 @@ class VideoGameType extends AbstractType
                 'label' => 'Console / Support'
             ])
 
+            ->add('country', TextType::class, [
+                'label' => 'Pays'
+            ])
+
             ->add('imageFile', VichImageType::class, [
                 'label' => 'Image',
                 'required' => false,

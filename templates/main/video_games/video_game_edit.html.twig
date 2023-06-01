@@ -28,7 +28,10 @@
 			{{ form_row(form.publisher, {
         'label_attr': {'class': 'fw-bold'}
     }) }}
-	{{ form_row(form.imageFile, {
+	{{ form_row(form.country, {
+        'label_attr': {'class': 'fw-bold'}
+    }) }}
+			{{ form_row(form.imageFile, {
         'label_attr': {'class': 'fw-bold'}
     }) }}
 			{{ form_row(form.acquisition_date, {
@@ -53,3 +56,4 @@
 
 
 {# {{ include('admin/ability/_delete_form.html.twig') }} #}{% endblock %}
+

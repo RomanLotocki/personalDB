@@ -61,6 +61,9 @@ class VideoGame
     #[Vich\UploadableField(mapping: 'vg_images', fileNameProperty: 'imageName')]
     private ?File $imageFile = null;
 
+    #[ORM\Column(length: 100)]
+    private ?string $country = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -245,5 +248,17 @@ class VideoGame
     public function getImageFile(): ?File
     {
         return $this->imageFile;
+    }
+
+    public function getCountry(): ?string
+    {
+        return $this->country;
+    }
+
+    public function setCountry(string $country): self
+    {
+        $this->country = $country;
+
+        return $this;
     }
 }
