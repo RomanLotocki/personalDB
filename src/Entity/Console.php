@@ -26,6 +26,9 @@ class Console
     #[ORM\Column(length: 100)]
     private ?string $country = null;
 
+    #[ORM\Column(length: 50, nullable: true)]
+    private ?string $model = null;
+
     #[ORM\Column(length: 100, nullable: true)]
     private ?string $acquisitionPrice = null;
 
@@ -91,6 +94,18 @@ class Console
     public function setCountry(string $country): self
     {
         $this->country = $country;
+
+        return $this;
+    }
+
+    public function getModel(): ?string
+    {
+        return $this->model;
+    }
+
+    public function setModel(string $model): self
+    {
+        $this->model = $model;
 
         return $this;
     }
