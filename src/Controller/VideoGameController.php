@@ -2,12 +2,12 @@
 
 namespace App\Controller;
 
-use App\Entity\VideoGame;
-use App\Form\SearchVideoGameType;
-use App\Form\VideoGameType;
-use App\Model\SearchData;
-use App\Repository\VideoGameRepository;
 use DateTimeImmutable;
+use App\Form\SearchType;
+use App\Entity\VideoGame;
+use App\Model\SearchData;
+use App\Form\VideoGameType;
+use App\Repository\VideoGameRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -35,7 +35,7 @@ class VideoGameController extends AbstractController
             return $this->redirectToRoute('app_vg_list');
         }
         $searchData = new SearchData();
-        $searchForm = $this->createForm(SearchVideoGameType::class, $searchData);
+        $searchForm = $this->createForm(SearchType::class, $searchData);
         $searchForm->handleRequest($request);
         if ($searchForm->isSubmitted() && $searchForm->isValid()) {
 

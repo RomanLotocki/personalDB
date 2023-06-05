@@ -22,7 +22,7 @@
 				{{ form_start(search_form, {
           'attr': {'class': 'sticky-top p-2 mb-2 bg-body-tertiary d-flex aligns-items-center rounded-3'}
         }) }}
-				{{ form_widget(search_form.query)}}
+				{{ form_widget(search_form.query, {'attr': {'placeholder': 'Rechercher un jeu'}})}}
 				<button class="btn btn-blue ms-4">
 					<span class="bi bi-search"></span>
 				</button>

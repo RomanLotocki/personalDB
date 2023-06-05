@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier une console
+{% endblock %}
+
+{% block body %}
+	<div class="p-5 mb-4 bg-body-tertiary rounded-3">
+		<h1 class="display-4">{{ console.name }}</h1>
+	</div>
+	<div class="card">
+		<div class="card-header">Modifier</div>
+		<div class="card-body">
+        {{ include('main/consoles/_form_console.html.twig', {'button_label': 'Modifier', }) }}
+        <a class="btn btn-green mb-1 text-light" href="{{ path('app_console_list') }}">Retour à la liste</a>
+		</div>
+	</div>
+</div>
+{% endblock %}

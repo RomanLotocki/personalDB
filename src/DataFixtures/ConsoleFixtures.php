@@ -22,9 +22,11 @@ class ConsoleFixtures extends Fixture implements DependentFixtureInterface
         $c->setManufacturer("Sony Computer Entertainment");
         $c->setReleaseDate(new DateTimeImmutable('09/29/1995'));
         $c->setCountry("France");
+        $c->setModel("SCPH-5552");
         $c->setAccessories("1 manette originale fonctionnelle et 2 cartes mémoire");
         $c->setConservationAndCommentaries("Ma console originale achetée en octobre ou novembre 1997");
         $c->setUser($userRepo->findOneBy(['email' => 'admin@gmail.com']));
+        $c->setCreatedAt(new DateTimeImmutable());
         
         $manager->persist($c);
 

@@ -3,8 +3,11 @@
 namespace App\Repository;
 
 use App\Entity\Console;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use App\Model\SearchData;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Knp\Component\Pager\Pagination\PaginationInterface;
+use Knp\Component\Pager\PaginatorInterface;
 
 /**
  * @extends ServiceEntityRepository<Console>
@@ -16,7 +19,7 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class ConsoleRepository extends ServiceEntityRepository
 {
-    public function __construct(ManagerRegistry $registry)
+    public function __construct(ManagerRegistry $registry, private PaginatorInterface $paginatorInterface)
     {
         parent::__construct($registry, Console::class);
     }
@@ -39,28 +42,33 @@ class ConsoleRepository extends ServiceEntityRepository
         }
     }
 
-//    /**
-//     * @return Console[] Returns an array of Console objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('c')
-//            ->andWhere('c.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('c.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    /**
+     * Return the consoles list of the current user allowing a user search filter and activating pagination
+     *
+     * @param [type] $value
+     * @param SearchData $searchData
+     * @param integer $page
+     * @return PaginationInterface
+     */
+    public function findAllConsolesByUser($value, SearchData $searchData, int $page): PaginationInterface
+    {
+        $data = $this->createQueryBuilder('s')
+            ->where('s.user = :val')
+            ->setParameter('val', $value);
+        if (!empty($searchData->query)) {
+            $data = $data
+                ->andWhere('s.name LIKE :q')
+                ->setParameter('q', "%{$searchData->query}%");
+        }
+        $data = $data
+            ->orderBy('s.id', 'DESC')
+            ->getQuery()
+            ->getResult();
 
-//    public function findOneBySomeField($value): ?Console
-//    {
-//        return $this->createQueryBuilder('c')
-//            ->andWhere('c.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+        $results = $this->paginatorInterface->paginate($data, $page, 10);
+
+        return $results;
+    }
+
+
 }
