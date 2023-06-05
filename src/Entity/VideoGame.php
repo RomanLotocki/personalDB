@@ -36,17 +36,17 @@ class VideoGame
     private ?string $commentary = null;
 
     #[ORM\Column(type: Types::DATE_IMMUTABLE)]
-    private ?\DateTimeImmutable $release_date = null;
+    private ?\DateTimeImmutable $releaseDate = null;
 
     #[ORM\ManyToOne(inversedBy: 'videoGames')]
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
 
     #[ORM\Column(nullable: true)]
-    private ?\DateTimeImmutable $acquisition_date = null;
+    private ?\DateTimeImmutable $acquisitionDate = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    private ?string $acquisition_price = null;
+    private ?string $acquisitionPrice = null;
 
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
@@ -143,12 +143,12 @@ class VideoGame
 
     public function getReleaseDate(): ?\DateTimeImmutable
     {
-        return $this->release_date;
+        return $this->releaseDate;
     }
 
-    public function setReleaseDate(\DateTimeImmutable $release_date): self
+    public function setReleaseDate(\DateTimeImmutable $releaseDate): self
     {
-        $this->release_date = $release_date;
+        $this->releaseDate = $releaseDate;
 
         return $this;
     }
@@ -167,24 +167,24 @@ class VideoGame
 
     public function getAcquisitionDate(): ?\DateTimeImmutable
     {
-        return $this->acquisition_date;
+        return $this->acquisitionDate;
     }
 
-    public function setAcquisitionDate(?\DateTimeImmutable $acquisition_date): self
+    public function setAcquisitionDate(?\DateTimeImmutable $acquisitionDate): self
     {
-        $this->acquisition_date = $acquisition_date;
+        $this->acquisitionDate = $acquisitionDate;
 
         return $this;
     }
 
     public function getAcquisitionPrice(): ?string
     {
-        return $this->acquisition_price;
+        return $this->acquisitionPrice;
     }
 
-    public function setAcquisitionPrice(?string $acquisition_price): self
+    public function setAcquisitionPrice(?string $acquisitionPrice): self
     {
-        $this->acquisition_price = $acquisition_price;
+        $this->acquisitionPrice = $acquisitionPrice;
 
         return $this;
     }

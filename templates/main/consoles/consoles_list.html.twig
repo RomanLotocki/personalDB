@@ -1,0 +1,106 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Consoles{% endblock %}
+
+{% block body %}
+	<div
+		class="p-5 mb-4 bg-body-tertiary rounded-3">
+		<h1 class="display-4">Consoles</h1>
+	</div>
+	<div class="row">
+		<div class="col-12 col-md-4">
+			<div class="card sticky-top">
+				<div class="card-header">Ajouter une console</div>
+				<div class="card-body">
+					{{ include('main/consoles/_form_console.html.twig') }}
+					</div>
+				</div>
+			</div>
+			<div class="col-12 col-md-8">
+				{{ form_start(search_form, {
+          'attr': {'class': 'sticky-top p-2 mb-2 bg-body-tertiary d-flex aligns-items-center rounded-3'}
+        }) }}
+				{{ form_widget(search_form.query, {'attr': {'placeholder': 'Rechercher une console'}})}}
+				<button class="btn btn-blue ms-4">
+					<span class="bi bi-search"></span>
+				</button>
+				{{ form_end(search_form)}}
+				<table class="table table-hover">
+					<thead class="bg-green text-light">
+						<tr>
+							<th scope="col">{{ knp_pagination_sortable(consoles, 'Nom', 'name', {'class': 'text-light float-start text-decoration-none'}) }}</th>
+							<th scope="col">{{ knp_pagination_sortable(consoles, 'Fabricant', 'manufacturer', {'class': 'text-light float-start text-decoration-none'}) }}</th>
+							<th scope="col">{{ knp_pagination_sortable(consoles, 'Date de sortie', 'releaseDate', {'class': 'text-light float-start text-decoration-none'}) }}</th>
+							<th scope="col"></th>
+							<th scope="col"></th>
+							<th scope="col"></th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for console in consoles %}
+							<tr>
+								<td class="fw-bold">{{ console.name}}</td>
+								<td>{{ console.manufacturer}}</td>
+								<td>{{ console.releaseDate|date('d-m-Y')}}</td>
+								<td>
+									<button class="btn btn-blue" data-bs-toggle="collapse" data-bs-target="#collapseExample{{ console.id }}" aria-expanded="false" aria-controls="collapseExample">
+										<span class="bi bi-eye-fill"></span>
+									</button>
+								</td>
+								<td>
+									<a class="btn btn-yellow" href="{{ path('app_console_edit', {'id': console.id}) }}">
+										<span class="bi bi-pencil-square"></span>
+									</a>
+								</td>
+								<td>
+
+									{{ include('main/consoles/_delete_console_form.html.twig') }}</td>
+							</tr>
+							<tr class="collapse" id="collapseExample{{ console.id }}">
+								<td colspan="7">
+
+									<div class="card">
+
+												<ul class="list-group list-group-flush">
+													<li class="list-group-item">
+														<span class="fw-bold">Modèle :
+														</span>
+														{{ console.model}}</li>
+													<li class="list-group-item">
+														<span class="fw-bold">Pays :
+														</span>
+														{{ console.country}}</li>
+													<li class="list-group-item">
+														<span class="fw-bold">Date d'acquisition :
+														</span>
+														{{ console.acquisitionDate is empty ? "" : console.acquisitionDate|date('d-m-Y')}}</li>
+													<li class="list-group-item">
+														<span class="fw-bold">Prix d'acquisition :
+														</span>
+														{{ console.acquisitionPrice}}</li>
+													<li class="list-group-item">
+														<span class="fw-bold">Accessoires :
+														</span>
+														{{ console.accessories}}</li>
+													<li class="list-group-item">
+														<span class="fw-bold">Etat et commentaires :
+														</span>
+														{{ console.conservationAndCommentaries}}</li>
+												</ul>
+										</div>
+									</td>
+								</td>
+							</tr>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+			<div class="navigation d-flex justify-content-center mb-8">
+				{{ knp_pagination_render(consoles) }}
+			</div>
+		</div>
+
+
+	</div>
+
+</div>{% endblock %}

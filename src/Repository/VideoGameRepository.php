@@ -4,7 +4,6 @@ namespace App\Repository;
 
 use App\Entity\VideoGame;
 use App\Model\SearchData;
-use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Knp\Component\Pager\Pagination\PaginationInterface;
@@ -55,7 +54,7 @@ class VideoGameRepository extends ServiceEntityRepository
     // }
 
     /**
-     * Return the videogame list of the current user allowing a user search filter 
+     * Return the videogames list of the current user allowing a user search filter and activating the pagination
      *
      * @param [type] $value
      * @param SearchData $searchData
@@ -77,7 +76,7 @@ class VideoGameRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
 
-        $results = $this->paginatorInterface->paginate($data, $page, 10);
+        $results = $this->paginatorInterface->paginate($data, $page, 20);
 
         return $results;
     }
