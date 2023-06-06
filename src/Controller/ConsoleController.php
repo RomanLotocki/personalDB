@@ -39,7 +39,7 @@ class ConsoleController extends AbstractController
         $searchForm->handleRequest($request);
         if ($searchForm->isSubmitted() && $searchForm->isValid()) {
 
-            $results = $consoleRepository->findAllConsolesByUser($this->getUser(), $searchData, $request->query->getInt('page', 1));
+            $results = $consoleRepository->findAllConsolesByUserPaginated($this->getUser(), $searchData, $request->query->getInt('page', 1));
 
             return $this->render('main/consoles/consoles_list.html.twig', [
                 'form' => $consoleForm,
@@ -52,7 +52,7 @@ class ConsoleController extends AbstractController
         return $this->render('main/consoles/consoles_list.html.twig', [
             'form' => $consoleForm,
             'search_form' => $searchForm,
-            'consoles' => $consoleRepository->findAllConsolesByUser($this->getUser(), $searchData, $request->query->getInt('page', 1)),
+            'consoles' => $consoleRepository->findAllConsolesByUserPaginated($this->getUser(), $searchData, $request->query->getInt('page', 1)),
             'controller_name' => 'ConsoleController',
         ]);
     }

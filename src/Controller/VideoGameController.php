@@ -39,7 +39,7 @@ class VideoGameController extends AbstractController
         $searchForm->handleRequest($request);
         if ($searchForm->isSubmitted() && $searchForm->isValid()) {
 
-            $results = $videoGameRepository->findAllByUser($this->getUser(), $searchData, $request->query->getInt('page', 1));
+            $results = $videoGameRepository->findAllByUserPaginated($this->getUser(), $searchData, $request->query->getInt('page', 1));
 
             return $this->render('main/video_games/video_games_list.html.twig', [
                 'form' => $form,
@@ -52,7 +52,7 @@ class VideoGameController extends AbstractController
         return $this->render('main/video_games/video_games_list.html.twig', [
             'form' => $form,
             'search_form' => $searchForm,
-            'videoGames' => $videoGameRepository->findAllByUser($this->getUser(), $searchData, $request->query->getInt('page', 1)),
+            'videoGames' => $videoGameRepository->findAllByUserPaginated($this->getUser(), $searchData, $request->query->getInt('page', 1)),
             'controller_name' => 'VideoGameController',
         ]);
     }

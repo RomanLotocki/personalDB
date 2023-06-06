@@ -42,6 +42,16 @@ class ConsoleRepository extends ServiceEntityRepository
         }
     }
 
+    public function findAllByUser($value)
+    {
+        return $this->createQueryBuilder('s')
+            ->where('s.user = :val')
+            ->setParameter('val', $value)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
     /**
      * Return the consoles list of the current user allowing a user search filter and activating pagination
      *
@@ -50,7 +60,7 @@ class ConsoleRepository extends ServiceEntityRepository
      * @param integer $page
      * @return PaginationInterface
      */
-    public function findAllConsolesByUser($value, SearchData $searchData, int $page): PaginationInterface
+    public function findAllConsolesByUserPaginated($value, SearchData $searchData, int $page): PaginationInterface
     {
         $data = $this->createQueryBuilder('s')
             ->where('s.user = :val')

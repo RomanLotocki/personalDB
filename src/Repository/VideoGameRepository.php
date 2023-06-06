@@ -42,16 +42,15 @@ class VideoGameRepository extends ServiceEntityRepository
         }
     }
 
-    // public function findAllByUser($value)
-    // {
-    //     return $this->createQueryBuilder('s')
-    //         ->where('s.user = :val')
-    //         ->setParameter('val', $value)
-    //         ->orderBy('s.id', 'DESC')
-    //         ->getQuery()
-    //         ->getResult()
-    //     ;
-    // }
+    public function findAllByUser($value)
+    {
+        return $this->createQueryBuilder('s')
+            ->where('s.user = :val')
+            ->setParameter('val', $value)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 
     /**
      * Return the videogames list of the current user allowing a user search filter and activating the pagination
@@ -61,7 +60,7 @@ class VideoGameRepository extends ServiceEntityRepository
      * @param integer $page
      * @return PaginationInterface
      */
-    public function findAllByUser($value, SearchData $searchData, int $page): PaginationInterface
+    public function findAllByUserPaginated($value, SearchData $searchData, int $page): PaginationInterface
     {
         $data = $this->createQueryBuilder('s')
             ->where('s.user = :val')
@@ -79,6 +78,23 @@ class VideoGameRepository extends ServiceEntityRepository
         $results = $this->paginatorInterface->paginate($data, $page, 20);
 
         return $results;
+    }
+
+    /**
+     * Return nine last added games
+     *
+     * @param User $value
+     * @return void
+     */
+    public function findNineLastByUser($value)
+    {
+        return $this->createQueryBuilder('p')
+            ->where('p.user = :val')
+            ->setParameter('val', $value)
+            ->orderBy('p.id', 'DESC')
+            ->getQuery()
+            ->setMaxResults(9)
+            ->getResult();
     }
 
     //    /**
