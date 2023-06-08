@@ -12,9 +12,37 @@
 	<div class="row">
 		<div class="col-12 col-md-4 mb-4">
 			<div class="card">
-				<div class="card-header">Analyse des données<span class="mbi bi-search"></span>
+				<div class="card-header d-flex justify-content-between lh-sm">
+					<h6 class="m-2">Analyse des données</h6>
+					<strong class=" m-2 bi bi-clipboard-data-fill"></strong>
 				</div>
-				<div class="card-body"></div>
+				<div class="card-body">
+					<ul class="list-group list-group-flush mb-3">
+						<li class="list-group-item d-flex justify-content-between lh-sm">
+							<h6 class="my-0">Nombre total de jeux</h6>
+							<strong>{{ totalGames }}</strong>
+						</li>
+
+						<li class="list-group-item d-flex justify-content-between lh-sm">
+							<h6 class="my-0">Nombre total de consoles</h6>
+							<strong>{{ totalConsoles }}</strong>
+						</li>
+
+						<li class="list-group-item d-flex justify-content-between lh-sm">
+							{% for o in olderGame %}
+								<p class="my-0">
+									<strong class="text-blue">{{ o.name }}</strong>
+									est le jeu le plus ancien de la collection</p>
+							{% endfor %}
+
+						</li>
+						<li class="list-group-item d-flex justify-content-between lh-sm">
+							<p class="my-0">
+								<strong class="text-yellow">{{ consoleWithMostGames }}</strong>
+								est la console avec le plus de jeux</p>
+						</li>
+					</ul>
+				</div>
 			</div>
 		</div>
 		<div class="col-12 col-md-8 d-flex flex-wrap justify-content-around">

@@ -97,6 +97,26 @@ class VideoGameRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    /**
+     * Get the older game of the collection
+     *
+     * @param [type] $value
+     * @return void
+     */
+    public function findTheOlder($value)
+    {
+        return $this->createQueryBuilder('s')
+            ->where('s.user = :val')
+            ->setParameter('val', $value)
+            ->orderBy('s.releaseDate')
+            ->getQuery()
+            ->setMaxResults(1)
+            ->getResult()
+        ;
+    }
+
+
+
     //    /**
     //     * @return VideoGame[] Returns an array of VideoGame objects
     //     */
