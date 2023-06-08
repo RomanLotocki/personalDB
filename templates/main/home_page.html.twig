@@ -27,6 +27,13 @@
 							<h6 class="my-0">Nombre total de consoles</h6>
 							<strong>{{ totalConsoles }}</strong>
 						</li>
+						{% for key, value in consoleListOpti %}
+							<li class="list-group-item d-flex justify-content-between lh-sm">
+								<h6 class="my-0">Jeux
+									{{ key }}</h6>
+								<strong>{{ value }}</strong>
+							</li>
+						{% endfor %}
 
 						<li class="list-group-item d-flex justify-content-between lh-sm">
 							{% for o in olderGame %}
