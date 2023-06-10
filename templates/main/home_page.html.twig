@@ -38,14 +38,14 @@
 						<li class="list-group-item d-flex justify-content-between lh-sm">
 							{% for o in olderGame %}
 								<p class="my-0">
-									<strong class="text-blue">{{ o.name }}</strong>
+									<strong>{{ o.name }}</strong>
 									est le jeu le plus ancien de la collection</p>
 							{% endfor %}
 
 						</li>
 						<li class="list-group-item d-flex justify-content-between lh-sm">
 							<p class="my-0">
-								<strong class="text-yellow">{{ consoleWithMostGames }}</strong>
+								<strong>{{ consoleWithMostGames }}</strong>
 								est la console avec le plus de jeux</p>
 						</li>
 					</ul>
@@ -57,7 +57,7 @@
 				<div class="card mb-3 text-center pt-2" style="width: 250px;">
 					<img src="{{ vich_uploader_asset(vg, 'imageFile') }}" alt="{{ vg.name ~ ' cover' }}" class="card-img-top mx-auto" style="width: 200px;">
 					<div class="card-body pb-2">
-						<h5 class="card-title">{{ vg.name }}</h5>
+						<h6 class="card-title">{{ vg.name }}</h6>
 					</div>
 				</div>
 			{% endfor %}

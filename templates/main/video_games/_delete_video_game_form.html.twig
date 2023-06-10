@@ -1,6 +1,6 @@
 <form method="post" action="{{ path('app_vg_delete', {'id': vg.id}) }}" onsubmit="return confirm('Supprimer {{ vg.name }} de la liste ?');">
 	<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ vg.id) }}">
-	<button class="btn btn-red">
+	<button class="btn">
 		<span class="bi bi-trash"></span>
 	</button>
 </form>

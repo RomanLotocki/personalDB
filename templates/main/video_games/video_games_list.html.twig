@@ -45,13 +45,13 @@
 								<td>{{ vg.console}}</td>
 								<td>{{ vg.releaseDate|date('d-m-Y')}}</td>
 								<td>
-									<button class="btn btn-blue" data-bs-toggle="collapse" data-bs-target="#collapseExample{{ vg.id }}" aria-expanded="false" aria-controls="collapseExample">
+									<button class="btn" data-bs-toggle="collapse" data-bs-target="#collapseExample{{ vg.id }}" aria-expanded="false" aria-controls="collapseExample">
 										<span class="bi bi-eye-fill"></span>
 									</button>
 								</td>
 								{# <a class= "btn btn-warning mb-1" href="{{ path('app_admin_ability_edit', {'id': ability.id}) }}">Modifier</a> #}
 								<td>
-									<a class="btn btn-yellow" href="{{ path('app_vg_edit', {'id': vg.id}) }}">
+									<a class="btn" href="{{ path('app_vg_edit', {'id': vg.id}) }}">
 										<span class="bi bi-pencil-square"></span>
 									</a>
 								</td>
