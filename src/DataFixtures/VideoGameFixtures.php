@@ -27,30 +27,30 @@ class VideoGameFixtures extends Fixture implements DependentFixtureInterface
         // }
         $userRepo = $manager->getRepository(User::class);
         $vg = new VideoGame();
-            $vg->setName("Chrono Trigger");
-            $vg->setDeveloper("SquareSoft");
-            $vg->setPublisher("SquareSoft");
-            $vg->setConsole("Super Famicom");
-            $vg->setCountry("Japon");
-            $vg->setImageName("chrono-trigger-super-famicom-2-6475205b09465509180039.jpg");
-            $vg->setConservation("Très bon état. Complet");
-            $vg->setCommentary("Jeu japonais. Acheté en 2020. Etat proche du neuf. Banger !!");
-            $vg->setReleaseDate(new DateTimeImmutable('11/03/1995'));
-            $vg->setUser($userRepo->findOneBy(['email' => 'admin@gmail.com']));
-            $vg->setCreatedAt(new DateTimeImmutable());
+            $vg->setName("Chrono Trigger")
+                ->setDeveloper("SquareSoft")
+                ->setPublisher("SquareSoft")
+                ->setConsole("Super Famicom")
+                ->setCountry("Japon")
+                ->setImageName("chrono-trigger-super-famicom-2-6475205b09465509180039.jpg")
+                ->setConservation("Très bon état. Complet")
+                ->setCommentary("Jeu japonais. Acheté en 2020. Etat proche du neuf. Banger !!")
+                ->setReleaseDate(new DateTimeImmutable('11/03/1995'))
+                ->setUser($userRepo->findOneBy(['email' => 'admin@gmail.com']))
+                ->setCreatedAt(new DateTimeImmutable());
         $manager->persist($vg);
 
         $vg = new VideoGame();
-            $vg->setName("Street Fighter II Turbo : Hyper Fighting");
-            $vg->setDeveloper("Capcom");
-            $vg->setPublisher("Capcom");
-            $vg->setConsole("Super Nintendo");
-            $vg->setCountry("Europe");
-            $vg->setImageName("sf2tsn0f.jpg");
-            $vg->setConservation("Cartouche seule");
-            $vg->setReleaseDate(new DateTimeImmutable('08/01/1993'));
-            $vg->setUser($userRepo->findOneBy(['email' => 'admin@gmail.com']));
-            $vg->setCreatedAt(new DateTimeImmutable());
+            $vg->setName("Street Fighter II Turbo : Hyper Fighting")
+            ->setDeveloper("Capcom")
+            ->setPublisher("Capcom")
+            ->setConsole("Super Nintendo")
+            ->setCountry("Europe")
+            ->setImageName("sf2tsn0f.jpg")
+            ->setConservation("Cartouche seule")
+            ->setReleaseDate(new DateTimeImmutable('08/01/1993'))
+            ->setUser($userRepo->findOneBy(['email' => 'admin@gmail.com']))
+            ->setCreatedAt(new DateTimeImmutable());
         $manager->persist($vg);
 
         $vg = new VideoGame();

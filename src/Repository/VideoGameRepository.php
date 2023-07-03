@@ -98,6 +98,23 @@ class VideoGameRepository extends ServiceEntityRepository
     }
 
     /**
+     * Return nine last added games. The RAND function in query builder is allowed by DoctrineExtensions bundle!
+     *
+     * @param User $value
+     * @return void
+     */
+    public function findTwelveRandomlyByUser($value)
+    {
+        return $this->createQueryBuilder('p')
+            ->where('p.user = :val')
+            ->setParameter('val', $value)
+            ->orderBy('RAND()')
+            ->getQuery()
+            ->setMaxResults(9)
+            ->getResult();
+    }
+
+    /**
      * Get the older game of the collection
      *
      * @param [type] $value
