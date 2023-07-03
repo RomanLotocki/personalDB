@@ -54,10 +54,10 @@
 		</div>
 		<div class="col-12 col-md-8 d-flex flex-wrap justify-content-around">
 			{% for vg in videoGames %}
-				<div class="card mb-3 text-center pt-2" style="width: 250px;">
-					<img src="{{ vich_uploader_asset(vg, 'imageFile') }}" alt="{{ vg.name ~ ' cover' }}" class="card-img-top mx-auto" style="width: 200px;">
-					<div class="card-body pb-2">
-						<h6 class="card-title">{{ vg.name }}</h6>
+				<div class="mb-3 text-center rounded py-3 d-flex align-items-center justify-content-center bg-body-tertiary" style="width: 250px;">
+					<div>
+						<img src="{{ vich_uploader_asset(vg, 'imageFile') }}" alt="{{ vg.name ~ ' cover' }}" class="rounded">
+						<h6 class="mx-3 mt-3 mb-0">{{ vg.name }}</h6>
 					</div>
 				</div>
 			{% endfor %}
