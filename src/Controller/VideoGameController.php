@@ -91,4 +91,19 @@ class VideoGameController extends AbstractController
             ]);
         }
     }
+
+    #[Route('/{console}', methods: ['GET'], name: 'games_by_console')]
+    public function gamesByConsole(VideoGameRepository $videoGameRepository, string $console): Response
+    {
+        $console = $videoGameRepository->findByConsole($this->getUser(), ["console"=>$console]);
+        dump($console);
+        dump($videoGameRepository->findByConsole($this->getUser(), "Mega Drive"));
+
+        if (empty($console)) {
+            throw $this->createNotFoundException('Cette page n\'existe pas');
+        }
+            return $this->render('main/video_games/games_by_console.html.twig', [
+                'controller_name' => 'VideoGameController'
+            ]);
+        }
 }
