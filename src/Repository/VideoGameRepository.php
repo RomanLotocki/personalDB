@@ -110,7 +110,7 @@ class VideoGameRepository extends ServiceEntityRepository
             ->setParameter('val', $value)
             ->orderBy('RAND()')
             ->getQuery()
-            ->setMaxResults(9)
+            ->setMaxResults(12)
             ->getResult();
     }
 
@@ -128,6 +128,25 @@ class VideoGameRepository extends ServiceEntityRepository
             ->orderBy('s.releaseDate')
             ->getQuery()
             ->setMaxResults(1)
+            ->getResult()
+        ;
+    }
+
+    /**
+     * find all games from a console
+     *
+     * @param [type] $value
+     * @return void
+     */
+    public function findByConsole($value, $console)
+    {
+        return $this->createQueryBuilder('s')
+            ->where('s.user = :val')
+            ->setParameter('val', $value)
+            ->andWhere('s.console = :cons')
+            ->setParameter('cons', $console)
+            ->orderBy('s.name')
+            ->getQuery()
             ->getResult()
         ;
     }

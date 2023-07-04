@@ -18,6 +18,7 @@ class MainController extends AbstractController
         $totalGames = count($games);
         $totalConsoles = count($consoleRepository->findAllByUser($currentUser));
         $olderGame = $videoGameRepository->findTheOlder($currentUser);
+        dump($videoGameRepository->findByConsole($currentUser, "Mega Drive"));
 
         //get the console with the most games
         $consoleList = [];
