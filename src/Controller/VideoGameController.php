@@ -95,15 +95,15 @@ class VideoGameController extends AbstractController
     #[Route('/{console}', methods: ['GET'], name: 'games_by_console')]
     public function gamesByConsole(VideoGameRepository $videoGameRepository, string $console): Response
     {
-        $console = $videoGameRepository->findByConsole($this->getUser(), ["console"=>$console]);
-        dump($console);
-        dump($videoGameRepository->findByConsole($this->getUser(), "Mega Drive"));
+        $vg = $videoGameRepository->findByConsole($this->getUser(), ["console" => $console]);
 
-        if (empty($console)) {
+        if (empty($vg)) {
             throw $this->createNotFoundException('Cette page n\'existe pas');
         }
-            return $this->render('main/video_games/games_by_console.html.twig', [
-                'controller_name' => 'VideoGameController'
-            ]);
-        }
+        return $this->render('main/video_games/games_by_console.html.twig', [
+            'vg' => $vg,
+            'console' => $console,
+            'controller_name' => 'VideoGameController'
+        ]);
+    }
 }

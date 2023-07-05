@@ -4,5 +4,21 @@
 {% endblock %}
 
 {% block body %}
-
+	<div class="p-5 mb-4 bg-body-tertiary rounded-3">
+		<h1 class="display-4">Jeux
+			{{ console }}</h1>
+	</div>
+	<div class="d-flex flex-wrap justify-content-around">
+		{% for v in vg %}
+			<div class="mb-3 text-center rounded py-3 d-flex align-items-center justify-content-center bg-body-tertiary" style="width: 250px;">
+				<div>
+					<div class="zoom">
+						<img src="{{ vich_uploader_asset(v, 'imageFile') }}" alt="{{ v.name ~ ' cover' }}" class="rounded">
+					</div>
+					<h6 class="mx-3 mt-3 mb-0">{{ v.name }}</h6>
+				</div>
+			</div>
+		{% endfor %}
+	</div>
 {% endblock %}
+

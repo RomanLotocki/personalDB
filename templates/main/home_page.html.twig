@@ -7,7 +7,7 @@
 	<div
 		class="p-5 mb-4 bg-body-tertiary rounded-3">
 		{# <p class="lead">Bienvenue sur ta Data Base {{ app.user.userName}} !</p> #}
-		<h1 class="display-4">Bienvenue sur My Personal DataBase</h1>
+		<h1 class="display-4">My Personal DataBase</h1>
 	</div>
 	<div class="row">
 		<div class="col-12 col-md-4 mb-4">
@@ -29,8 +29,10 @@
 						</li>
 						{% for key, value in consoleListOpti %}
 							<li class="list-group-item d-flex justify-content-between lh-sm">
-								<h6 class="my-0">Jeux
-									{{ key }}</h6>
+								<a href="{{ path('app_vg_games_by_console', {'console': key}) }}">
+									<h6 class="my-0">Jeux
+										{{ key }}</h6>
+								</a>
 								<strong>{{ value }}</strong>
 							</li>
 						{% endfor %}
@@ -56,7 +58,9 @@
 			{% for vg in videoGames %}
 				<div class="mb-3 text-center rounded py-3 d-flex align-items-center justify-content-center bg-body-tertiary" style="width: 250px;">
 					<div>
-						<img src="{{ vich_uploader_asset(vg, 'imageFile') }}" alt="{{ vg.name ~ ' cover' }}" class="rounded">
+						<div class="zoom">
+							<img src="{{ vich_uploader_asset(vg, 'imageFile') }}" alt="{{ vg.name ~ ' cover' }}" class="rounded">
+						</div>
 						<h6 class="mx-3 mt-3 mb-0">{{ vg.name }}</h6>
 					</div>
 				</div>
