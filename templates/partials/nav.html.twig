@@ -8,10 +8,10 @@
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 					<li class="nav-item">
-						<a class="nav-link {{ controller_name is same as "VideoGameController" ? "active" : "" }}" href="{{ path('app_vg_list') }}">Jeux vidéo</a>
+						<a class="nav-link {{ controller_name is same as " videogamecontroller" ? " active" : " " }}" href="{{ path('app_vg_list') }}">Jeux vidéo</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link {{ controller_name is same as "ConsoleController" ? "active" : "" }}" href="{{ path('app_console_list') }}">Consoles</a>
+						<a class="nav-link {{ controller_name is same as " consolecontroller" ? " active" : " " }}" href="{{ path('app_console_list') }}">Consoles</a>
 					</li>
 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -19,7 +19,7 @@
 						</a>
 						<ul class="dropdown-menu">
 							<li>
-								<a class="dropdown-item" href="#">Mon profil</a>
+								<a class="dropdown-item" href="{{ path('app_user', {'id': app.user.id}) }}">Mon profil</a>
 							</li>
 							<li><hr class="dropdown-divider"></li>
 							<li>
