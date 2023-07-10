@@ -14,10 +14,16 @@
 				<label for="pseudo" class="form-label required">Nom d'utilisateur</label>
 				<input type="text" id="pseudo" name="pseudo" class="form-control" value="{{ app.user.username }}">
 			</div>
+			<div class="mb-3">
+				<label for="email" class="form-label required">Email</label>
+				<input type="email" id="email" name="email" class="form-control" value="{{ app.user.email }}">
+			</div>
 
 			<input type="hidden" name="token" value="{{ csrf_token('modify-pseudo') }}"/>
 		</div>
-		<button class="btn btn-warning">Modifier</button>
+		<button class="btn btn-yellow">Enregistrer les modifications</button>
 	</form>
+	<a class="btn btn-red my-2" href="{{ path('app_user_password_edit', {'id': app.user.id}) }}">Changer le mot passe</a>
+
 {% endblock %}
 
