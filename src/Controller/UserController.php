@@ -14,8 +14,9 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 class UserController extends AbstractController
 {
     #[Route('/user/{id}', methods: ['GET', 'POST'], name: 'app_user', requirements: ['id' => '\d+'])]
-    public function editUser(Request $request, User $user, EntityManagerInterface $manager): Response
+    public function editUser(Request $request, User $user, EntityManagerInterface $manager, ValidatorInterface $validator): Response
     {
+        $oldPseudo = $user->getUserName();
         $newPseudo = $request->get('pseudo');
         $newEmail = $request->get('email');
         $submittedToken = $request->request->get('token');
@@ -23,7 +24,20 @@ class UserController extends AbstractController
         if ($request->getMethod() === "POST" && $this->isCsrfTokenValid('modify-pseudo', $submittedToken)) {
             $user->setUserName($newPseudo);
             $user->setEmail($newEmail);
-            $manager->flush();
+            $errors = $validator->validate($user);
+            if (count($errors) > 0) {
+
+                foreach ($errors as $error) {
+                    $this->addFlash(
+                        'error',
+                        $error->getMessage()
+                    );
+                }
+                $user->setUserName($oldPseudo);
+            } else {
+
+                $manager->flush();
+            }
         }
 
         return $this->render('user/edit_user.html.twig', [

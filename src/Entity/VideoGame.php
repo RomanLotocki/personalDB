@@ -7,6 +7,7 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: VideoGameRepository::class)]
 #[Vich\Uploadable]
@@ -18,6 +19,7 @@ class VideoGame
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
     private ?string $name = null;
 
     #[ORM\Column(length: 255, nullable: true)]
@@ -27,6 +29,7 @@ class VideoGame
     private ?string $publisher = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
     private ?string $console = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
@@ -36,6 +39,7 @@ class VideoGame
     private ?string $commentary = null;
 
     #[ORM\Column(type: Types::DATE_IMMUTABLE)]
+    #[Assert\NotBlank]
     private ?\DateTimeImmutable $releaseDate = null;
 
     #[ORM\ManyToOne(inversedBy: 'videoGames')]
@@ -62,6 +66,7 @@ class VideoGame
     private ?File $imageFile = null;
 
     #[ORM\Column(length: 100)]
+    #[Assert\NotBlank]
     private ?string $country = null;
 
     public function getId(): ?int

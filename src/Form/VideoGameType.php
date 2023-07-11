@@ -74,9 +74,8 @@ class VideoGameType extends AbstractType
             ->add('submit', SubmitType::class, [
                 'label' => 'Ajouter',
                 "attr" => ["class" => "btn-blue"]
-                
-            ])
-        ;
+
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

@@ -21,8 +21,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?int $id = null;
 
     #[ORM\Column(length: 180, unique: true)]
-    private ?string $email = null;
 
+    private ?string $email = null;
+    #[Assert\NotBlank]
     #[ORM\Column]
     private array $roles = [];
 
@@ -30,6 +31,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @var string The hashed password
      */
     #[ORM\Column]
+    #[Assert\NotBlank]
     #[Assert\Length(
         min: 8,
         minMessage: 'Le mot de passe doit être au moins de {{ limit }} caractères',
@@ -37,6 +39,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $password = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
     private ?string $userName = null;
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: VideoGame::class, orphanRemoval: true)]
