@@ -34,5 +34,6 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Video Games', 'fas fa-gamepad', VideoGame::class);
         yield MenuItem::linkToCrud('Consoles', 'fas fa-computer', Console::class);
         yield MenuItem::linkToCrud('Users', 'fas fa-users', User::class);
+        yield MenuItem::linkToUrl('My Data Base', 'fas fa-database', $this->generateUrl('app_home'));
     }
 }
