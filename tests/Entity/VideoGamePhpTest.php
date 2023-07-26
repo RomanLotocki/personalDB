@@ -23,6 +23,12 @@ class VideoGameTestPhpTest extends KernelTestCase
         $errors = $container->get('validator')->validate($vg);
         $this->assertCount(0, $errors);
 
+        dump($vg->getName());
+
+        $this->assertTrue($vg->getName() == 'Wild Arms');
+        $this->assertSame('PlayStation', $vg->getConsole());
+        $this->assertSame($vg->getName(), $vg->__toString());
+
     }
 
 
