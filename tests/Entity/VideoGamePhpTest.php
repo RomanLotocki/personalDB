@@ -28,8 +28,5 @@ class VideoGameTestPhpTest extends KernelTestCase
         $this->assertTrue($vg->getName() == 'Wild Arms');
         $this->assertSame('PlayStation', $vg->getConsole());
         $this->assertSame($vg->getName(), $vg->__toString());
-
     }
-
-
 }

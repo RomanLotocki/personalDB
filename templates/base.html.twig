@@ -1,5 +1,4 @@
 {% set route_name = app.request.attributes.get('_route') %}
-{% set controller_name = 'defaultController' %}
 
 <!DOCTYPE html>
 <html data-bs-theme="dark">
@@ -40,10 +39,22 @@
 
 			{% endif %}
 			{% block body %}{% endblock %}
+			<footer class="mt-4">
+				{% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+					<ul class="nav justify-content-center border-bottom pb-3 mb-3">
+						<li class="nav-item">
+							<a href="{{ path("app_home") }}" class="nav-link px-2 text-body-secondary">Accueil</a>
+						</li>
+						<li class="nav-item">
+							<a href="#" class="nav-link px-2 text-body-secondary">A propos</a>
+						</li>
+					</ul>
+				{% endif %}
+				<p class="text-center text-body-secondary">© 2023 Roman Lotocki</p>
+			</footer>
 		</main>
 		{% block javascripts %}
 			{{ encore_entry_script_tags('app') }}
 		{% endblock %}
 	</body>
 </html>
-
