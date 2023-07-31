@@ -12,9 +12,55 @@
 		{% for v in vg %}
 			<div class="mb-3 text-center rounded py-3 d-flex align-items-center justify-content-center bg-body-tertiary" style="width: 250px;">
 				<div>
-					<div class="zoom">
+					<div class="zoom" data-bs-toggle="modal" data-bs-target="#vgModal{{v.id}}">
 						<img src="{{ vich_uploader_asset(v, 'imageFile') }}" alt="{{ v.name ~ ' cover' }}" class="rounded">
 					</div>
+					{# modal start#}
+						<div class="modal fade" id="vgModal{{v.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h2 class="modal-title fs-5" id="exampleModalLabel">{{ v.name }}</h2>
+										<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+									</div>
+									<div class="modal-body text-start">
+										<h2 class="fs-6">Console / Support</h2>
+										<p>{{ v.console }}</p>
+										<hr>
+										<h2 class="fs-6">Date de sortie</h2>
+										<p>{{ v.releaseDate|date('d-m-Y')}}</p>
+										<hr>
+										<h2 class="fs-6">Développeur</h2>
+										<p>{{ v.developer }}</p>
+										<hr>
+										<h2 class="fs-6">Editeur</h2>
+										<p>{{ v.publisher }}</p>
+										<hr>
+										<h2 class="fs-6">Pays</h2>
+										<p>{{ v.country }}</p>
+										<hr>
+										<h2 class="fs-6">Etat</h2>
+										<p>{{ v.conservation }}</p>
+										{% if v.acquisitionDate is not empty %}
+											<hr>
+											<h2 class="fs-6">Date d'acquisition</h2>
+											<p>{{ v.acquisitionDate }}</p>
+										{% endif %}
+										{% if v.acquisitionPrice is not empty %}
+											<hr>
+											<h2 class="fs-6">Prix d'acquisition</h2>
+											<p>{{ v.acquisitionPrice }}</p>
+										{% endif %}
+										{% if v.commentary is not empty %}
+											<hr>
+											<h2 class="fs-6">Commentaire</h2>
+											<p>{{ v.commentary }}</p>
+										{% endif %}
+									</div>
+								</div>
+							</div>
+						</div>
+						{# modal end #}
 					<h6 class="mx-3 mt-3 mb-0">{{ v.name }}</h6>
 				</div>
 			</div>

@@ -19,12 +19,11 @@
 				<div class="card-body">
 					<ul class="list-group list-group-flush mb-3">
 						<li class="list-group-item d-flex justify-content-between lh-sm">
-							<h6 class="my-0">Nombre total de jeux</h6>
+							<h6 class="my-0">Jeux</h6>
 							<strong>{{ totalGames }}</strong>
 						</li>
-
 						<li class="list-group-item d-flex justify-content-between lh-sm">
-							<h6 class="my-0">Nombre total de consoles</h6>
+							<h6 class="my-0">Consoles</h6>
 							<strong>{{ totalConsoles }}</strong>
 						</li>
 						{% for key, value in consoleListOpti %}
@@ -36,17 +35,15 @@
 								<strong>{{ value }}</strong>
 							</li>
 						{% endfor %}
-
 						<li class="list-group-item d-flex justify-content-between lh-sm">
 							{% for o in olderGame %}
 								<p class="my-0">
 									<strong>{{ o.name }}</strong>
 									est le jeu le plus ancien de la collection</p>
 							{% endfor %}
-
 						</li>
 						<li class="list-group-item d-flex justify-content-between lh-sm">
-							<p class="my-0">La 
+							<p class="my-0">La
 								<strong>{{ consoleWithMostGames }}</strong>
 								est la console avec le plus de jeux</p>
 						</li>
@@ -58,14 +55,59 @@
 			{% for vg in videoGames %}
 				<div class="mb-3 text-center rounded py-3 d-flex align-items-center justify-content-center bg-body-tertiary" style="width: 250px;">
 					<div>
-						<div class="zoom">
+						<div class="zoom" data-bs-toggle="modal" data-bs-target="#vgModal{{vg.id}}">
 							<img src="{{ vich_uploader_asset(vg, 'imageFile') }}" alt="{{ vg.name ~ ' cover' }}" class="rounded">
 						</div>
+						{# modal start#}
+						<div class="modal fade" id="vgModal{{vg.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h2 class="modal-title fs-5" id="exampleModalLabel">{{ vg.name }}</h2>
+										<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+									</div>
+									<div class="modal-body text-start">
+										<h2 class="fs-6">Console / Support</h2>
+										<p>{{ vg.console }}</p>
+										<hr>
+										<h2 class="fs-6">Date de sortie</h2>
+										<p>{{ vg.releaseDate|date('d-m-Y')}}</p>
+										<hr>
+										<h2 class="fs-6">Développeur</h2>
+										<p>{{ vg.developer }}</p>
+										<hr>
+										<h2 class="fs-6">Editeur</h2>
+										<p>{{ vg.publisher }}</p>
+										<hr>
+										<h2 class="fs-6">Pays</h2>
+										<p>{{ vg.country }}</p>
+										<hr>
+										<h2 class="fs-6">Etat</h2>
+										<p>{{ vg.conservation }}</p>
+										{% if vg.acquisitionDate is not empty %}
+											<hr>
+											<h2 class="fs-6">Date d'acquisition</h2>
+											<p>{{ vg.acquisitionDate }}</p>
+										{% endif %}
+										{% if vg.acquisitionPrice is not empty %}
+											<hr>
+											<h2 class="fs-6">Prix d'acquisition</h2>
+											<p>{{ vg.acquisitionPrice }}</p>
+										{% endif %}
+										{% if vg.commentary is not empty %}
+											<hr>
+											<h2 class="fs-6">Commentaire</h2>
+											<p>{{ vg.commentary }}</p>
+										{% endif %}
+									</div>
+								</div>
+							</div>
+						</div>
+						{# modal end #}
 						<h6 class="mx-3 mt-3 mb-0">{{ vg.name }}</h6>
 					</div>
 				</div>
 			{% endfor %}
-
 		</div>
 	</div>
 {% endblock %}
