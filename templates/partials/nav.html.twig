@@ -7,33 +7,46 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0 flex-grow-1">
-					<li class="nav-item">
-						<a class="nav-link {{ controller_name is same as "VideoGameController" ? "active" : "" }}" href="{{ path('app_vg_list') }}">Jeux vidéo</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link {{ controller_name is same as "ConsoleController" ? "active" : "" }}" href="{{ path('app_console_list') }}">Consoles</a>
-					</li>
-					
-				</ul>
-				<div class="nav-item dropdown">
+					<div class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-							Profil
+							Jeux vidéo
 						</a>
 						<ul class="dropdown-menu">
-							<li>
-								<a class="dropdown-item" href="{{ path('app_user', {'id': app.user.id}) }}">Mon profil</a>
-							</li>
-							{% if is_granted('ROLE_ADMIN') %}
+							{% for console in consoles %}
 								<li>
-									<a class="dropdown-item" href="{{ path('admin') }}">Admin</a>
+									<a class="dropdown-item" href="{{ path('app_vg_games_by_console', {'console': console}) }}">{{ console }}</a>
 								</li>
-							{% endif %}
+							{% endfor %}
 							<li><hr class="dropdown-divider"></li>
 							<li>
-								<a class="dropdown-item" href="{{ path('app_logout')}}">Déconnexion</a>
+								<a class="dropdown-item" href="{{ path('app_vg_list')}}">Ajouter</a>
 							</li>
 						</ul>
 					</div>
+					<li class="nav-item">
+						<a class="nav-link {{ controller_name is same as " consolecontroller" ? " active" : " " }}" href="{{ path('app_console_list') }}">Consoles</a>
+					</li>
+
+				</ul>
+				<div class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+						Profil
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+							<a class="dropdown-item" href="{{ path('app_user', {'id': app.user.id}) }}">Mon profil</a>
+						</li>
+						{% if is_granted('ROLE_ADMIN') %}
+							<li>
+								<a class="dropdown-item" href="{{ path('admin') }}">Admin</a>
+							</li>
+						{% endif %}
+						<li><hr class="dropdown-divider"></li>
+						<li>
+							<a class="dropdown-item" href="{{ path('app_logout')}}">Déconnexion</a>
+						</li>
+					</ul>
+				</div>
 
 				<div class="nav-item dropdown bd-mode-toggle ms-auto">
 					<button class="btn py-2 d-flex align-items-center" id="bd-theme" type="button" aria-expanded="false" data-bs-toggle="dropdown" aria-label="Toggle theme (auto)">
@@ -77,3 +90,4 @@
 	</nav>
 
 {% endblock %}
+

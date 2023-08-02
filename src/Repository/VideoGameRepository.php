@@ -148,6 +148,17 @@ class VideoGameRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    public function findConsolesInGames($value)
+    {
+        return $this->createQueryBuilder('s')
+            ->select('s.console')
+            ->where('s.user = :val')
+            ->setParameter('val', $value)
+            ->orderBy('s.console')
+            ->getQuery()
+            ->getResult();
+    }
+
 
 
     //    /**

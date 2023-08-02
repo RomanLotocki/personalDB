@@ -34,9 +34,8 @@
 		<main class="container py-4">
 			{% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
 				{% block nav %}
-					{% embed "partials/nav.html.twig" %}{% endembed %}
+					{{ render(controller('App\\Controller\\MainController::navController')) }}
 				{% endblock %}
-
 			{% endif %}
 			{% block body %}{% endblock %}
 			<footer class="mt-4">

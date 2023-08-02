@@ -11,7 +11,7 @@
 	</div>
 	<div class="row">
 		<div class="col-12 col-md-4">
-			<div class="card sticky-top">
+			<div class="card sticky-top z-0">
 				<div class="card-header">Ajouter un jeu</div>
 				<div class="card-body">
 					{{ form(form) }}
@@ -20,7 +20,7 @@
 			</div>
 			<div class="col-12 col-md-8">
 				{{ form_start(search_form, {
-          'attr': {'class': 'sticky-top p-2 mb-2 bg-body-tertiary d-flex aligns-items-center rounded-3'}
+          'attr': {'class': 'sticky-top p-2 mb-2 bg-body-tertiary d-flex aligns-items-center rounded-3 z-0'}
         }) }}
 				{{ form_widget(search_form.query, {'attr': {'placeholder': 'Rechercher un jeu'}})}}
 				<button class="btn btn-blue ms-4">
