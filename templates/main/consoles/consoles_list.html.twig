@@ -9,7 +9,7 @@
 	</div>
 	<div class="row">
 		<div class="col-12 col-md-4">
-			<div class="card sticky-top">
+			<div class="card sticky-top z-0">
 				<div class="card-header">Ajouter une console</div>
 				<div class="card-body">
 					{{ include('main/consoles/_form_console.html.twig') }}
@@ -18,7 +18,7 @@
 			</div>
 			<div class="col-12 col-md-8">
 				{{ form_start(search_form, {
-          'attr': {'class': 'sticky-top p-2 mb-2 bg-body-tertiary d-flex aligns-items-center rounded-3'}
+          'attr': {'class': 'sticky-top p-2 mb-2 z-0 bg-body-tertiary d-flex aligns-items-center rounded-3'}
         }) }}
 				{{ form_widget(search_form.query, {'attr': {'placeholder': 'Rechercher une console'}})}}
 				<button class="btn btn-blue ms-4">
