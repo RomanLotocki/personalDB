@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class MainController extends AbstractController
 {
+    // Not in use. Embedded controller was not a good solution for my nav bar. I just needed to pass some variables but a controller creates a route. I didn't find the solution to use the active bootstrap class. Instead I create a component. That is why I was able to pass some datas to my nav bar template and also able to have the current route in my app
     public function navController(VideoGameRepository $videoGameRepository): Response
     {
         $currentUser = $this->getUser();
