@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\VideoGame;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
@@ -70,6 +71,17 @@ class VideoGameType extends AbstractType
             ->add('commentary', TextareaType::class, [
                 'label' => 'Commentaire',
                 'required' => false,
+            ])
+            ->add('rating', ChoiceType::class, [
+                'label' => 'Note',
+                'choices' => [
+                    'Aucune' => null,
+                    'Très mauvais' => 1,
+                    'Mauvais' => 2,
+                    'Moyen' => 3,
+                    'Bon' => 4,
+                    'Excellent' => 5
+                ]
             ])
             ->add('submit', SubmitType::class, [
                 'label' => 'Ajouter',

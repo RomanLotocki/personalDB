@@ -69,6 +69,11 @@ class VideoGame
     #[Assert\NotBlank]
     private ?string $country = null;
 
+    #[ORM\Column(type: Types::SMALLINT, nullable: true)]
+    #[Assert\LessThanOrEqual(5)]
+    #[Assert\Positive]
+    private ?int $rating = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -270,5 +275,17 @@ class VideoGame
     public function __toString(): string
     {
         return $this->getName();
+    }
+
+    public function getRating(): ?int
+    {
+        return $this->rating;
+    }
+
+    public function setRating(?int $rating): static
+    {
+        $this->rating = $rating;
+
+        return $this;
     }
 }

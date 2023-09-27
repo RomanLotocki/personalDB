@@ -42,7 +42,7 @@ class CreateAdminCommand extends Command
 
         $output->writeln([
             '',
-            'User Creator',
+            'Admin Creator',
             '============',
             '',
         ]);

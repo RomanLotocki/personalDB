@@ -65,7 +65,7 @@
 									<div class="card">
 										<div class="row g-0">
 											<div class="col-md-4 d-flex align-items-center justify-content-center">
-												<img src= "{{ vich_uploader_asset(vg, 'imageFile') }}" alt= "{{ vg.name ~ ' cover' }}">
+												<img src="{{ vich_uploader_asset(vg, 'imageFile') }}" alt="{{ vg.name ~ ' cover' }}">
 											</div>
 											<div class="col-md-8">
 
@@ -78,26 +78,36 @@
 														<span class="fw-bold">Editeur :
 														</span>
 														{{ vg.publisher}}</li>
-														<li class="list-group-item">
+													<li class="list-group-item">
 														<span class="fw-bold">Pays :
 														</span>
 														{{ vg.country}}</li>
-													<li class="list-group-item">
-														<span class="fw-bold">Date d'acquisition :
-														</span>
-														{{ vg.acquisitionDate is empty ? "" : vg.acquisitionDate|date('d-m-Y')}}</li>
-													<li class="list-group-item">
-														<span class="fw-bold">Prix d'acquisition :
-														</span>
-														{{ vg.acquisitionPrice}}</li>
+													{% if vg.acquisitionDate is not empty %}
+														<li class="list-group-item">
+															<span class="fw-bold">Date d'acquisition :
+															</span>
+															{{ vg.acquisitionDate|date('d-m-Y')}}</li>
+													{% endif %}
+													{% if vg.acquisitionPrice is not empty %}
+														<li class="list-group-item">
+															<span class="fw-bold">Prix d'acquisition :
+															</span>
+															{{ vg.acquisitionPrice}}</li>
+													{% endif %}
 													<li class="list-group-item">
 														<span class="fw-bold">Etat :
 														</span>
 														{{ vg.conservation}}</li>
+													{% if vg.commentary is not empty %}
+														<li class="list-group-item">
+															<span class="fw-bold">Commentaire :
+															</span>
+															{{ vg.commentary}}</li>
+													{% endif %}
 													<li class="list-group-item">
-														<span class="fw-bold">Commentaire :
+														<span class="fw-bold">Note :
 														</span>
-														{{ vg.commentary}}</li>
+														{{ displayStars(vg.rating) }}</li>
 												</ul>
 											</div>
 										</div>

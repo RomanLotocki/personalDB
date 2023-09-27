@@ -63,8 +63,11 @@
 							<div class="modal-dialog">
 								<div class="modal-content">
 									<div class="modal-header">
-										<h2 class="modal-title fs-5" id="exampleModalLabel">{{ vg.name }}</h2>
-										<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+										<h2 class="modal-title fs-5 me-auto" id="exampleModalLabel">{{ vg.name }}</h2>
+										<a href="{{ path('app_vg_edit', {'id': vg.id}) }}">
+											<i class="fa-solid fa-pen-to-square fa-lg mx-4" style="color: #2e6db4;"></i>
+										</a>
+										<button type="button" class="btn-close m-0" data-bs-dismiss="modal" aria-label="Close"></button>
 									</div>
 									<div class="modal-body text-start">
 										<h2 class="fs-6">Console / Support</h2>
@@ -84,6 +87,9 @@
 										<hr>
 										<h2 class="fs-6">Etat</h2>
 										<p>{{ vg.conservation }}</p>
+										<hr>
+										<h2 class="fs-6">Note</h2>
+										{{ displayStars(vg.rating) }}
 										{% if vg.acquisitionDate is not empty %}
 											<hr>
 											<h2 class="fs-6">Date d'acquisition</h2>
