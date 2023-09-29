@@ -9,7 +9,7 @@ Welcome to the **MyPersonalDB** repository. This project provides you with a per
 * UI and design : Bootstrap 5.3 working with Webpack Encore
 
 ## Getting started
-If you want to run this application locally here are the steps to follow :
+If you want to run this application locally here are the steps to follow:
 
 ### Prerequisites
 Make sur you have the following list installed on your system:
@@ -26,13 +26,13 @@ Make sur you have the following list installed on your system:
   git clone git@github.com:RomanLotocki/personnalDB.git
   ```
 
-3. Install server-side dependencies using Composer.
+3. Install server-side dependencies using composer.
 
   ```sh
   composer install
   ```
 
-4. Install client-side dependencies using npm
+4. Install client-side dependencies using npm.
 
 ```sh
   npm install
@@ -42,7 +42,7 @@ Make sur you have the following list installed on your system:
 
 6. Create the database and run migrations.
 
-7. Run a symfony server
+7. Run a symfony server for a smoother experience.
 ```sh
   symfony server:start
   ```
