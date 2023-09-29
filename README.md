@@ -23,7 +23,7 @@ Make sur you have the following list installed on your system:
 1. Clone this repository.
 
   ```sh
-  git clone git@github.com:RomanLotocki/personnalDB.git
+  git clone git@github.com:RomanLotocki/personalDB.git
   ```
 
 3. Install server-side dependencies using composer.
