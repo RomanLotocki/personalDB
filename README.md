@@ -19,7 +19,7 @@ Make sur you have the following list installed on your system:
 
 * PHP 8.1.0 or higher
 * Composer (to run Symfony dependencies)
-* Node.js (to run webpack dependencies using npm)
+* Node.js (to run Webpack dependencies using npm)
 * DataBase choice is up to you as long as it works with Doctrine ORM. By default, MyPersonalDB is running with MariaDB
 
 ### Installation
@@ -27,19 +27,19 @@ Make sur you have the following list installed on your system:
 1. Clone this repository.
 
   ```sh
-  git clone git@github.com:RomanLotocki/personalDB.git
+git clone git@github.com:RomanLotocki/personalDB.git
   ```
 
 2. Install server-side dependencies using composer.
 
   ```sh
-  composer install
+composer install
   ```
 
 3. Install client-side dependencies using npm.
 
 ```sh
-  npm install
+npm install
   ```
 
 4. Create a `.env.local` file to configure your database with your preferences and personal informations.
@@ -49,7 +49,7 @@ Make sur you have the following list installed on your system:
 6. Run a symfony server for a smoother experience.
 
 ```sh
-  symfony server:start
+symfony server:start
   ```
 
 8. Enjoy 😉
