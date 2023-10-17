@@ -57,3 +57,9 @@ symfony server:start
 ## Contact
 
 If you have questions, comments, or want to contribute, feel free to reach me at <roman.lotocki@gmail.com> or by creating an issue on this GitHub repository.
+
+## Screenshots
+
+![Ps1 Games](./readme_pictures/ps1page.png)
+![game details](./readme_pictures/gamedetails.png)
+![login page](./readme_pictures/login.png)
