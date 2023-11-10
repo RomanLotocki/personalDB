@@ -21,9 +21,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?int $id = null;
 
     #[ORM\Column(length: 180, unique: true)]
-
-    private ?string $email = null;
     #[Assert\NotBlank]
+    private ?string $email = null;
+
     #[ORM\Column]
     private array $roles = [];
 

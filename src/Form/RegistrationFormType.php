@@ -28,7 +28,7 @@ class RegistrationFormType extends AbstractType
             ])
             ->add('password', RepeatedType::class, [
                 'type' => PasswordType::class,
-                'mapped' => false,
+                //'mapped' => false,
                 'invalid_message' => 'Le mot de passe doit être identique',
                 'required' => true,
                 'first_options'  => ['label' => "Mot de passe"],
