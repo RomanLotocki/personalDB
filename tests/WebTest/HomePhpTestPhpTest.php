@@ -14,7 +14,7 @@ class HomePhpTestPhpTest extends WebTestCase
         $crawler = $client->request('GET', '/');
 
         $this->assertResponseIsSuccessful();
-        $this->assertSelectorTextContains('h1', 'Bienvenue sur votre DataBase !');
+        $this->assertSelectorTextContains('h1', 'Bienvenue sur My Personnal DataBase');
 
         $button = $crawler->selectButton('Se connecter');
         $this->assertEquals(1, count($button));

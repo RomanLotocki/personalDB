@@ -1,0 +1,35 @@
+# dockerfile
+FROM php:8.2-apache
+
+# Bundle to easily install PHP extensions
+ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
+
+RUN chmod +x /usr/local/bin/install-php-extensions && \
+    install-php-extensions pdo_mysql intl
+
+# Install Composer
+COPY --from=composer /usr/bin/composer /usr/bin/composer
+
+# Install npm and nodejs if necessary
+RUN apt update && apt install -yqq nodejs npm
+
+# In order to run properly the app in the Docker environment I copy the local symfony app in Docker
+COPY . /var/www/
+
+# change the default apache conf to serve public and not html repo
+COPY ./docker/apache2.conf /etc/apache2/sites-available/000-default.conf
+
+# move to the root of the symfony app and run composer (should run npm install and npm run build here if necessary) -> after that vendor is available in docker
+RUN cd /var/www && \
+    composer install && \
+    npm install --force && \
+    npm run build
+
+# set the default repository when the container start to /var/www/ -> the root of the app
+WORKDIR /var/www/
+
+#execute the script to setup migrations and demo user
+ENTRYPOINT ["bash", "./docker/docker.sh"]
+
+#define a port
+EXPOSE 80
