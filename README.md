@@ -7,15 +7,17 @@ Welcome to the **MyPersonalDB** repository. This project provides you with a per
 ### Built with
 
 * Symfony 6.3
-* UI and design : Bootstrap 5.3 working with Webpack Encore
+> :memo: **Note:** Now running with Symfony 6.4.
+* **UI and design:** Bootstrap 5.3 working with Webpack Encore
 
 ## Getting started
 
 If you want to run this application locally here are the steps to follow:
+> :memo: **Note:** A dockerized version will be available soon.
 
 ### Prerequisites
 
-Make sur you have the following list installed on your system:
+Make sure you have the following list installed on your system:
 
 * PHP 8.1.0 or higher
 * Composer (to run Symfony dependencies)
@@ -41,12 +43,17 @@ composer install
 ```sh
 npm install
   ```
+4. Build the assets as a production build.
 
-4. Create a `.env.local` file to configure your database with your preferences and personal informations.
+```sh
+npm run build
+  ```
 
-5. Create the database and run migrations.
+5. Create a `.env.local` file to configure your database with your preferences and personal informations.
 
-6. Run a symfony server for a smoother experience.
+6. Create the database and run migrations.
+
+7. Run a symfony server for a smoother experience.
 
 ```sh
 symfony server:start
